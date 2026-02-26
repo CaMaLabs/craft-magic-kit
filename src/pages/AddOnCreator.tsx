@@ -1,7 +1,9 @@
 import { useState } from "react";
 import BlockDropdown from "@/components/BlockDropdown";
 import TextureUploader from "@/components/TextureUploader";
-import { Download, RotateCcw } from "lucide-react";
+import { Download, RotateCcw, Loader2 } from "lucide-react";
+import { generateAddon } from "@/lib/packGenerator";
+import { toast } from "sonner";
 
 const addonTypes = [
   { value: "behavior", label: "Behavior Pack", emoji: "⚙️" },
@@ -29,12 +31,26 @@ const AddOnCreator = () => {
   const [addonName, setAddonName] = useState("");
   const [texture, setTexture] = useState<string | null>(null);
 
+  const [isGenerating, setIsGenerating] = useState(false);
+
   const handleReset = () => {
     setAddonType("");
     setEntityType("");
     setDifficulty("");
     setAddonName("");
     setTexture(null);
+  };
+
+  const handleDownload = async () => {
+    setIsGenerating(true);
+    try {
+      await generateAddon({ addonName, addonType, entityType, difficulty, textureUrl: texture });
+      toast.success("Add-on downloaded! 🎉 Import the .mcaddon into Minecraft Bedrock!");
+    } catch {
+      toast.error("Oops! Something went wrong creating your add-on.");
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -120,11 +136,12 @@ const AddOnCreator = () => {
             Start Over
           </button>
           <button
-            disabled={!addonName || !addonType || !entityType}
+            disabled={!addonName || !addonType || !entityType || isGenerating}
+            onClick={handleDownload}
             className="flex flex-1 items-center justify-center gap-2 rounded bg-primary px-6 py-3 font-bold text-primary-foreground transition-all hover:scale-105 pixel-border disabled:opacity-50 disabled:hover:scale-100"
           >
-            <Download className="h-4 w-4" />
-            Create Add-on!
+            {isGenerating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
+            {isGenerating ? "Creating..." : "Create Add-on!"}
           </button>
         </div>
       </div>

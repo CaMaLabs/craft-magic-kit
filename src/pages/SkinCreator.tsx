@@ -1,7 +1,9 @@
 import { useState } from "react";
 import TextureUploader from "@/components/TextureUploader";
 import BlockDropdown from "@/components/BlockDropdown";
-import { Download, RotateCcw } from "lucide-react";
+import { Download, RotateCcw, Loader2 } from "lucide-react";
+import { generateSkinPack } from "@/lib/packGenerator";
+import { toast } from "sonner";
 
 const skinTypes = [
   { value: "steve", label: "Steve (Classic)", emoji: "🧑" },
@@ -27,10 +29,24 @@ const SkinCreator = () => {
     setTexture(url);
   };
 
+  const [isGenerating, setIsGenerating] = useState(false);
+
   const handleReset = () => {
     setSkinType("");
     setSkinStyle("");
     setTexture(null);
+  };
+
+  const handleDownload = async () => {
+    setIsGenerating(true);
+    try {
+      await generateSkinPack({ skinType, skinStyle, textureUrl: texture });
+      toast.success("Skin pack downloaded! 🎉 Import it into Minecraft Bedrock!");
+    } catch {
+      toast.error("Oops! Something went wrong generating your skin pack.");
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -91,11 +107,12 @@ const SkinCreator = () => {
             Start Over
           </button>
           <button
-            disabled={!skinType || !skinStyle}
+            disabled={!skinType || !skinStyle || isGenerating}
+            onClick={handleDownload}
             className="flex flex-1 items-center justify-center gap-2 rounded bg-primary px-6 py-3 font-bold text-primary-foreground transition-all hover:scale-105 pixel-border disabled:opacity-50 disabled:hover:scale-100"
           >
-            <Download className="h-4 w-4" />
-            Download Skin Pack!
+            {isGenerating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
+            {isGenerating ? "Generating..." : "Download Skin Pack!"}
           </button>
         </div>
       </div>
