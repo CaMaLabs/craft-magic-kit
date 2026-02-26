@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BlockDropdown from "@/components/BlockDropdown";
+import NestedBlockDropdown, { type NestedOption } from "@/components/NestedBlockDropdown";
 import TextureUploader from "@/components/TextureUploader";
 import { Download, RotateCcw, Loader2 } from "lucide-react";
 import { generateAddon } from "@/lib/packGenerator";
@@ -24,14 +25,156 @@ const difficulties = [
   { value: "hard", label: "Super Tough", emoji: "🔥" },
 ];
 
+// Nested behavior options per entity type
+const mobBehaviors: NestedOption[] = [
+  {
+    value: "movement", label: "Movement", emoji: "🏃",
+    children: [
+      { value: "mov_walk", label: "Walk Around", emoji: "🚶" },
+      { value: "mov_fly", label: "Fly", emoji: "🕊️" },
+      { value: "mov_swim", label: "Swim", emoji: "🐟" },
+      { value: "mov_teleport", label: "Teleport", emoji: "✨" },
+    ],
+  },
+  {
+    value: "combat", label: "Combat", emoji: "⚔️",
+    children: [
+      { value: "cmb_melee", label: "Melee Attack", emoji: "👊" },
+      { value: "cmb_ranged", label: "Ranged Attack", emoji: "🏹" },
+      { value: "cmb_explode", label: "Explode", emoji: "💥" },
+      { value: "cmb_poison", label: "Poison", emoji: "☠️" },
+    ],
+  },
+  {
+    value: "social", label: "Social", emoji: "💬",
+    children: [
+      { value: "soc_tame", label: "Tameable", emoji: "❤️" },
+      { value: "soc_trade", label: "Can Trade", emoji: "💰" },
+      { value: "soc_follow", label: "Follows Player", emoji: "🐕" },
+      { value: "soc_herd", label: "Herd Behavior", emoji: "🐑" },
+    ],
+  },
+  {
+    value: "special", label: "Special Abilities", emoji: "🌟",
+    children: [
+      { value: "spc_glow", label: "Glows in Dark", emoji: "💡" },
+      { value: "spc_invis", label: "Turns Invisible", emoji: "👻" },
+      { value: "spc_regen", label: "Regenerates Health", emoji: "💚" },
+      { value: "spc_loot", label: "Drops Special Loot", emoji: "🎁" },
+    ],
+  },
+];
+
+const itemBehaviors: NestedOption[] = [
+  {
+    value: "usage", label: "Usage Type", emoji: "🎯",
+    children: [
+      { value: "use_weapon", label: "Weapon", emoji: "⚔️" },
+      { value: "use_tool", label: "Tool", emoji: "⛏️" },
+      { value: "use_food", label: "Food", emoji: "🍎" },
+      { value: "use_potion", label: "Potion", emoji: "🧪" },
+    ],
+  },
+  {
+    value: "effects", label: "Effects", emoji: "✨",
+    children: [
+      { value: "eff_speed", label: "Speed Boost", emoji: "💨" },
+      { value: "eff_strength", label: "Strength Boost", emoji: "💪" },
+      { value: "eff_heal", label: "Healing", emoji: "💖" },
+      { value: "eff_fire", label: "Fire Aspect", emoji: "🔥" },
+    ],
+  },
+  {
+    value: "rarity", label: "Rarity", emoji: "💎",
+    children: [
+      { value: "rar_common", label: "Common", emoji: "⬜" },
+      { value: "rar_rare", label: "Rare", emoji: "🟦" },
+      { value: "rar_epic", label: "Epic", emoji: "🟪" },
+      { value: "rar_legendary", label: "Legendary", emoji: "🟨" },
+    ],
+  },
+];
+
+const blockBehaviors: NestedOption[] = [
+  {
+    value: "physics", label: "Physics", emoji: "🧲",
+    children: [
+      { value: "phys_solid", label: "Solid", emoji: "🧱" },
+      { value: "phys_gravity", label: "Affected by Gravity", emoji: "⬇️" },
+      { value: "phys_liquid", label: "Liquid-like", emoji: "💧" },
+      { value: "phys_bouncy", label: "Bouncy", emoji: "🏀" },
+    ],
+  },
+  {
+    value: "interaction", label: "Interaction", emoji: "👆",
+    children: [
+      { value: "int_redstone", label: "Redstone Power", emoji: "🔴" },
+      { value: "int_light", label: "Emits Light", emoji: "💡" },
+      { value: "int_container", label: "Storage Container", emoji: "📦" },
+      { value: "int_craft", label: "Crafting Station", emoji: "🔨" },
+    ],
+  },
+  {
+    value: "appearance", label: "Appearance", emoji: "🎨",
+    children: [
+      { value: "app_transparent", label: "Transparent", emoji: "🪟" },
+      { value: "app_animated", label: "Animated Texture", emoji: "🎬" },
+      { value: "app_connected", label: "Connected Textures", emoji: "🔗" },
+    ],
+  },
+];
+
+const biomeBehaviors: NestedOption[] = [
+  {
+    value: "climate", label: "Climate", emoji: "🌡️",
+    children: [
+      { value: "cli_hot", label: "Hot & Dry", emoji: "☀️" },
+      { value: "cli_cold", label: "Frozen", emoji: "❄️" },
+      { value: "cli_tropical", label: "Tropical", emoji: "🌴" },
+      { value: "cli_stormy", label: "Stormy", emoji: "⛈️" },
+    ],
+  },
+  {
+    value: "terrain", label: "Terrain", emoji: "⛰️",
+    children: [
+      { value: "ter_flat", label: "Flat Plains", emoji: "🌾" },
+      { value: "ter_mountains", label: "Mountains", emoji: "🏔️" },
+      { value: "ter_caves", label: "Underground Caves", emoji: "🕳️" },
+      { value: "ter_floating", label: "Floating Islands", emoji: "🏝️" },
+    ],
+  },
+  {
+    value: "life", label: "Wildlife", emoji: "🦜",
+    children: [
+      { value: "life_dense", label: "Dense Forest", emoji: "🌳" },
+      { value: "life_mushroom", label: "Mushroom Fields", emoji: "🍄" },
+      { value: "life_crystal", label: "Crystal Gardens", emoji: "💎" },
+      { value: "life_void", label: "Barren Void", emoji: "🌑" },
+    ],
+  },
+];
+
+const behaviorMap: Record<string, NestedOption[]> = {
+  mob: mobBehaviors,
+  item: itemBehaviors,
+  block: blockBehaviors,
+  biome: biomeBehaviors,
+};
+
 const AddOnCreator = () => {
   const [addonType, setAddonType] = useState("");
   const [entityType, setEntityType] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [addonName, setAddonName] = useState("");
   const [texture, setTexture] = useState<string | null>(null);
+  const [behavior, setBehavior] = useState("");
 
   const [isGenerating, setIsGenerating] = useState(false);
+
+  const handleEntityChange = (val: string) => {
+    setEntityType(val);
+    setBehavior(""); // reset behavior when entity changes
+  };
 
   const handleReset = () => {
     setAddonType("");
@@ -39,6 +182,7 @@ const AddOnCreator = () => {
     setDifficulty("");
     setAddonName("");
     setTexture(null);
+    setBehavior("");
   };
 
   const handleDownload = async () => {
@@ -97,10 +241,26 @@ const AddOnCreator = () => {
             label="Entity Type"
             options={entityTypes}
             value={entityType}
-            onChange={setEntityType}
+            onChange={handleEntityChange}
             placeholder="What do you want to add?"
           />
         </div>
+
+        {/* Behavior Config — appears after entity type is chosen */}
+        {entityType && behaviorMap[entityType] && (
+          <div className="rounded-lg border-4 border-border bg-card p-6 pixel-border">
+            <h2 className="font-pixel text-sm text-diamond mb-4">
+              ⚡ Custom Behavior
+            </h2>
+            <NestedBlockDropdown
+              label="Choose a behavior"
+              options={behaviorMap[entityType]}
+              value={behavior}
+              onChange={setBehavior}
+              placeholder="Expand a category..."
+            />
+          </div>
+        )}
 
         {/* Difficulty */}
         <div className="rounded-lg border-4 border-border bg-card p-6 pixel-border">
