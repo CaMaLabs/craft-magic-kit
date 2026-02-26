@@ -167,13 +167,13 @@ const AddOnCreator = () => {
   const [difficulty, setDifficulty] = useState("");
   const [addonName, setAddonName] = useState("");
   const [texture, setTexture] = useState<string | null>(null);
-  const [behavior, setBehavior] = useState("");
+  const [behaviors, setBehaviors] = useState<string[]>([]);
 
   const [isGenerating, setIsGenerating] = useState(false);
 
   const handleEntityChange = (val: string) => {
     setEntityType(val);
-    setBehavior(""); // reset behavior when entity changes
+    setBehaviors([]); // reset behaviors when entity changes
   };
 
   const handleReset = () => {
@@ -182,7 +182,7 @@ const AddOnCreator = () => {
     setDifficulty("");
     setAddonName("");
     setTexture(null);
-    setBehavior("");
+    setBehaviors([]);
   };
 
   const handleDownload = async () => {
@@ -253,11 +253,11 @@ const AddOnCreator = () => {
               ⚡ Custom Behavior
             </h2>
             <NestedBlockDropdown
-              label="Choose a behavior"
+              label="Choose behaviors"
               options={behaviorMap[entityType]}
-              value={behavior}
-              onChange={setBehavior}
-              placeholder="Expand a category..."
+              value={behaviors}
+              onChange={setBehaviors}
+              placeholder="Pick abilities to combine!"
             />
           </div>
         )}
