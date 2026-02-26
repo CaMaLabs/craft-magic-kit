@@ -1,7 +1,9 @@
 import { useState } from "react";
 import BlockDropdown from "@/components/BlockDropdown";
 import TextureUploader from "@/components/TextureUploader";
-import { Download, Plus, Trash2, RotateCcw } from "lucide-react";
+import { Download, Plus, Trash2, RotateCcw, Loader2 } from "lucide-react";
+import { generateModPack } from "@/lib/packGenerator";
+import { toast } from "sonner";
 
 const categories = [
   { value: "survival", label: "Survival", emoji: "🏕️" },
@@ -39,12 +41,27 @@ const ModPackBuilder = () => {
     setSelectedMods(selectedMods.filter((m) => m !== mod));
   };
 
+  const [isGenerating, setIsGenerating] = useState(false);
+
   const handleReset = () => {
     setPackName("");
     setCategory("");
     setSelectedMods([]);
     setCurrentMod("");
     setIcon(null);
+  };
+
+  const handleDownload = async () => {
+    setIsGenerating(true);
+    try {
+      const modLabels = selectedMods.map((v) => availableMods.find((m) => m.value === v)?.label || v);
+      await generateModPack({ packName, category, mods: modLabels, iconUrl: icon });
+      toast.success("Mod pack downloaded! 🎉 Import the .mcaddon file into Minecraft!");
+    } catch {
+      toast.error("Oops! Something went wrong building your mod pack.");
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -155,11 +172,12 @@ const ModPackBuilder = () => {
             Start Over
           </button>
           <button
-            disabled={!packName || !category || selectedMods.length === 0}
+            disabled={!packName || !category || selectedMods.length === 0 || isGenerating}
+            onClick={handleDownload}
             className="flex flex-1 items-center justify-center gap-2 rounded bg-primary px-6 py-3 font-bold text-primary-foreground transition-all hover:scale-105 pixel-border disabled:opacity-50 disabled:hover:scale-100"
           >
-            <Download className="h-4 w-4" />
-            Build Mod Pack!
+            {isGenerating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
+            {isGenerating ? "Building..." : "Build Mod Pack!"}
           </button>
         </div>
       </div>
