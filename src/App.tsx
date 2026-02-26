@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import SkinCreator from "./pages/SkinCreator";
 import ModPackBuilder from "./pages/ModPackBuilder";
 import AddOnCreator from "./pages/AddOnCreator";
+import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
         <Layout>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/skins" element={<SkinCreator />} />
             <Route path="/modpacks" element={<ModPackBuilder />} />
             <Route path="/addons" element={<AddOnCreator />} />
