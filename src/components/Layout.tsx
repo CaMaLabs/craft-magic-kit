@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, Paintbrush, Package, Puzzle, Sparkles } from "lucide-react";
+import { Home, Paintbrush, Package, Puzzle, Sparkles, GalleryHorizontalEnd } from "lucide-react";
 
 const navItems = [
   { path: "/", label: "Home", icon: Home },
+  { path: "/gallery", label: "Gallery", icon: GalleryHorizontalEnd },
   { path: "/skins", label: "Skins", icon: Paintbrush },
   { path: "/modpacks", label: "Mod Packs", icon: Package },
   { path: "/addons", label: "Add-ons", icon: Puzzle },
