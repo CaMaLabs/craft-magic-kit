@@ -286,6 +286,77 @@ const AddOnCreator = () => {
           />
         </div>
 
+        {/* Summary Panel — visible when key fields are filled */}
+        {addonName && addonType && entityType && (
+          <div className="rounded-lg border-4 border-primary/40 bg-primary/5 p-6 pixel-border-strong space-y-4">
+            <h2 className="font-pixel text-sm text-primary mb-2">📋 Your Add-on Summary</h2>
+
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div className="rounded bg-card p-3 pixel-border">
+                <span className="text-muted-foreground text-xs font-bold uppercase tracking-wide">Name</span>
+                <p className="font-bold text-foreground mt-1 truncate">{addonName}</p>
+              </div>
+              <div className="rounded bg-card p-3 pixel-border">
+                <span className="text-muted-foreground text-xs font-bold uppercase tracking-wide">Pack Type</span>
+                <p className="font-bold text-foreground mt-1">
+                  {addonTypes.find(t => t.value === addonType)?.emoji}{" "}
+                  {addonTypes.find(t => t.value === addonType)?.label}
+                </p>
+              </div>
+              <div className="rounded bg-card p-3 pixel-border">
+                <span className="text-muted-foreground text-xs font-bold uppercase tracking-wide">Entity</span>
+                <p className="font-bold text-foreground mt-1">
+                  {entityTypes.find(t => t.value === entityType)?.emoji}{" "}
+                  {entityTypes.find(t => t.value === entityType)?.label}
+                </p>
+              </div>
+              <div className="rounded bg-card p-3 pixel-border">
+                <span className="text-muted-foreground text-xs font-bold uppercase tracking-wide">Difficulty</span>
+                <p className="font-bold text-foreground mt-1">
+                  {difficulty
+                    ? `${difficulties.find(d => d.value === difficulty)?.emoji} ${difficulties.find(d => d.value === difficulty)?.label}`
+                    : "—"}
+                </p>
+              </div>
+            </div>
+
+            {/* Selected behaviors */}
+            {behaviors.length > 0 && (
+              <div className="rounded bg-card p-3 pixel-border">
+                <span className="text-muted-foreground text-xs font-bold uppercase tracking-wide">Abilities</span>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {behaviors.map(b => {
+                    const match = behaviorMap[entityType]
+                      ?.flatMap(cat => cat.children ?? [])
+                      .find(c => c.value === b);
+                    return (
+                      <span
+                        key={b}
+                        className="inline-flex items-center gap-1 rounded-full bg-primary/15 px-3 py-1 text-sm font-bold text-primary"
+                      >
+                        {match?.emoji} {match?.label ?? b}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Texture preview */}
+            {texture && (
+              <div className="rounded bg-card p-3 pixel-border flex items-center gap-3">
+                <img
+                  src={texture}
+                  alt="Texture preview"
+                  className="h-12 w-12 rounded border-2 border-border object-cover"
+                  style={{ imageRendering: "pixelated" }}
+                />
+                <span className="text-sm font-bold text-foreground">Custom texture attached ✅</span>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Actions */}
         <div className="flex gap-4">
           <button
