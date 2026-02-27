@@ -271,3 +271,60 @@ export async function generateAddon(opts: {
   const content = await outerZip.generateAsync({ type: "blob" });
   triggerDownload(content, `${opts.addonName.replace(/\s/g, "_")}.mcaddon`);
 }
+
+// Returns the blob without triggering a download (for publishing to store)
+export async function generateAddonBlob(opts: {
+  addonName: string;
+  addonType: string;
+  entityType: string;
+  difficulty: string;
+  textureUrl: string | null;
+}): Promise<Blob> {
+  const outerZip = new JSZip();
+
+  const makePack = async (type: "data" | "resources", label: string) => {
+    const pack = new JSZip();
+    const packId = generateUUID();
+    pack.file("manifest.json", JSON.stringify({
+      format_version: 2,
+      header: {
+        name: `${opts.addonName} (${label})`,
+        description: `Custom ${opts.entityType} add-on — ${opts.difficulty} difficulty. Made with BlockCraft Studio!`,
+        uuid: packId, version: [1, 0, 0], min_engine_version: [1, 16, 0],
+      },
+      modules: [{ type, uuid: generateUUID(), version: [1, 0, 0] }],
+    }, null, 2));
+
+    if (type === "data") {
+      const entityId = opts.addonName.toLowerCase().replace(/\s/g, "_");
+      pack.file(`entities/${entityId}.json`, JSON.stringify({
+        format_version: "1.16.0",
+        "minecraft:entity": {
+          description: { identifier: `blockcraft:${entityId}`, is_spawnable: true, is_summonable: true },
+          components: {
+            "minecraft:health": { value: opts.difficulty === "easy" ? 10 : opts.difficulty === "medium" ? 20 : 40, max: opts.difficulty === "easy" ? 10 : opts.difficulty === "medium" ? 20 : 40 },
+            "minecraft:movement": { value: 0.25 },
+            "minecraft:collision_box": { width: 0.6, height: 1.8 },
+          },
+        },
+      }, null, 2));
+    }
+
+    if (type === "resources" && opts.textureUrl) {
+      const blob = await fetchBlobFromUrl(opts.textureUrl);
+      pack.file("textures/entity/custom_entity.png", blob);
+    }
+    return pack;
+  };
+
+  if (opts.addonType === "behavior" || opts.addonType === "both") {
+    const bp = await makePack("data", "Behavior");
+    outerZip.file("behavior_pack.mcpack", await bp.generateAsync({ type: "blob" }));
+  }
+  if (opts.addonType === "resource" || opts.addonType === "both") {
+    const rp = await makePack("resources", "Resource");
+    outerZip.file("resource_pack.mcpack", await rp.generateAsync({ type: "blob" }));
+  }
+
+  return outerZip.generateAsync({ type: "blob" });
+}

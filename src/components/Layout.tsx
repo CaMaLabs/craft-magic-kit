@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, Paintbrush, Package, Puzzle, Sparkles, GalleryHorizontalEnd } from "lucide-react";
+import { Home, Paintbrush, Package, Puzzle, Sparkles, GalleryHorizontalEnd, Store } from "lucide-react";
 
 const navItems = [
   { path: "/", label: "Home", icon: Home },
@@ -8,6 +8,7 @@ const navItems = [
   { path: "/skins", label: "Skins", icon: Paintbrush },
   { path: "/modpacks", label: "Mod Packs", icon: Package },
   { path: "/addons", label: "Add-ons", icon: Puzzle },
+  { path: "/store", label: "Store", icon: Store },
 ];
 
 const Layout = ({ children }: { children: ReactNode }) => {
