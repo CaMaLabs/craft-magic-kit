@@ -2,8 +2,9 @@ import { useState } from "react";
 import BlockDropdown from "@/components/BlockDropdown";
 import NestedBlockDropdown, { type NestedOption } from "@/components/NestedBlockDropdown";
 import TextureUploader from "@/components/TextureUploader";
-import { Download, RotateCcw, Loader2 } from "lucide-react";
-import { generateAddon } from "@/lib/packGenerator";
+import { Download, RotateCcw, Loader2, Upload } from "lucide-react";
+import { generateAddon, generateAddonBlob } from "@/lib/packGenerator";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 const addonTypes = [
@@ -170,6 +171,7 @@ const AddOnCreator = () => {
   const [behaviors, setBehaviors] = useState<string[]>([]);
 
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
 
   const handleEntityChange = (val: string) => {
     setEntityType(val);
@@ -194,6 +196,50 @@ const AddOnCreator = () => {
       toast.error("Oops! Something went wrong creating your add-on.");
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const handlePublish = async () => {
+    setIsPublishing(true);
+    try {
+      const blob = await generateAddonBlob({ addonName, addonType, entityType, difficulty, textureUrl: texture });
+      const fileName = `${addonName.replace(/\s/g, "_")}_${Date.now()}.mcaddon`;
+
+      // Upload pack file
+      const { error: uploadError } = await supabase.storage
+        .from("packs")
+        .upload(fileName, blob, { contentType: "application/octet-stream" });
+      if (uploadError) throw uploadError;
+
+      // Upload thumbnail if texture exists
+      let thumbnailPath: string | null = null;
+      if (texture) {
+        const thumbName = `thumbs/${addonName.replace(/\s/g, "_")}_${Date.now()}.png`;
+        const thumbBlob = await fetch(texture).then((r) => r.blob());
+        const { error: thumbErr } = await supabase.storage
+          .from("packs")
+          .upload(thumbName, thumbBlob, { contentType: "image/png" });
+        if (!thumbErr) thumbnailPath = thumbName;
+      }
+
+      // Insert into packs table
+      const packType = addonType === "both" ? "addon" : addonType;
+      const { error: dbError } = await supabase.from("packs").insert({
+        name: addonName,
+        description: `Custom ${entityType} add-on — ${difficulty || "any"} difficulty`,
+        pack_type: packType as "behavior" | "resource" | "skin" | "addon",
+        entity_type: entityType,
+        file_path: fileName,
+        thumbnail_path: thumbnailPath,
+      });
+      if (dbError) throw dbError;
+
+      toast.success("Published to the Pack Store! 🎉 Others can now download it.");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to publish. Please try again.");
+    } finally {
+      setIsPublishing(false);
     }
   };
 
@@ -358,7 +404,7 @@ const AddOnCreator = () => {
         )}
 
         {/* Actions */}
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           <button
             onClick={handleReset}
             className="flex items-center gap-2 rounded border-3 border-border bg-muted px-6 py-3 font-bold text-foreground transition-all hover:bg-muted/80 hover:scale-105 pixel-border"
@@ -373,6 +419,14 @@ const AddOnCreator = () => {
           >
             {isGenerating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
             {isGenerating ? "Creating..." : "Create Add-on!"}
+          </button>
+          <button
+            disabled={!addonName || !addonType || !entityType || isPublishing}
+            onClick={handlePublish}
+            className="flex items-center gap-2 rounded bg-secondary px-6 py-3 font-bold text-secondary-foreground transition-all hover:scale-105 pixel-border disabled:opacity-50 disabled:hover:scale-100"
+          >
+            {isPublishing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+            {isPublishing ? "Publishing..." : "Publish to Store"}
           </button>
         </div>
       </div>

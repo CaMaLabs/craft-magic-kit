@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import SkinCreator from "./pages/SkinCreator";
 import ModPackBuilder from "./pages/ModPackBuilder";
 import AddOnCreator from "./pages/AddOnCreator";
+import PackStore from "./pages/PackStore";
 import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
 
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/skins" element={<SkinCreator />} />
             <Route path="/modpacks" element={<ModPackBuilder />} />
             <Route path="/addons" element={<AddOnCreator />} />
+            <Route path="/store" element={<PackStore />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
