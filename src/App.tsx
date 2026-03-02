@@ -10,6 +10,7 @@ import ModPackBuilder from "./pages/ModPackBuilder";
 import AddOnCreator from "./pages/AddOnCreator";
 import PackStore from "./pages/PackStore";
 import Gallery from "./pages/Gallery";
+import TextureLibrary from "./pages/TextureLibrary";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/modpacks" element={<ModPackBuilder />} />
             <Route path="/addons" element={<AddOnCreator />} />
             <Route path="/store" element={<PackStore />} />
+            <Route path="/textures" element={<TextureLibrary />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
