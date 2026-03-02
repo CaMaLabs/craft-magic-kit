@@ -1,8 +1,9 @@
 import { useState } from "react";
 import BlockDropdown from "@/components/BlockDropdown";
 import TextureUploader from "@/components/TextureUploader";
-import { Download, Plus, Trash2, RotateCcw, Loader2 } from "lucide-react";
-import { generateModPack } from "@/lib/packGenerator";
+import { Download, Plus, Trash2, RotateCcw, Loader2, Upload } from "lucide-react";
+import { generateModPack, generateModPackBlob } from "@/lib/packGenerator";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 const categories = [
@@ -42,6 +43,7 @@ const ModPackBuilder = () => {
   };
 
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
 
   const handleReset = () => {
     setPackName("");
@@ -61,6 +63,41 @@ const ModPackBuilder = () => {
       toast.error("Oops! Something went wrong building your mod pack.");
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const handlePublish = async () => {
+    setIsPublishing(true);
+    try {
+      const modLabels = selectedMods.map((v) => availableMods.find((m) => m.value === v)?.label || v);
+      const blob = await generateModPackBlob({ packName, category, mods: modLabels, iconUrl: icon });
+      const fileName = `modpack_${packName.replace(/\s/g, "_")}_${Date.now()}.mcaddon`;
+      const { error: uploadError } = await supabase.storage.from("packs").upload(fileName, blob, { contentType: "application/octet-stream" });
+      if (uploadError) throw uploadError;
+
+      let thumbnailPath: string | null = null;
+      if (icon) {
+        const thumbName = `thumbs/modpack_${packName.replace(/\s/g, "_")}_${Date.now()}.png`;
+        const thumbBlob = await fetch(icon).then((r) => r.blob());
+        const { error: thumbErr } = await supabase.storage.from("packs").upload(thumbName, thumbBlob, { contentType: "image/png" });
+        if (!thumbErr) thumbnailPath = thumbName;
+      }
+
+      const { error: dbError } = await supabase.from("packs").insert({
+        name: packName,
+        description: `${category} mod pack with ${modLabels.join(", ")}`,
+        pack_type: "modpack",
+        file_path: fileName,
+        thumbnail_path: thumbnailPath,
+      });
+      if (dbError) throw dbError;
+
+      toast.success("Published to the Pack Store! 🎉");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to publish. Please try again.");
+    } finally {
+      setIsPublishing(false);
     }
   };
 
@@ -163,7 +200,7 @@ const ModPackBuilder = () => {
         </div>
 
         {/* Actions */}
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           <button
             onClick={handleReset}
             className="flex items-center gap-2 rounded border-3 border-border bg-muted px-6 py-3 font-bold text-foreground transition-all hover:bg-muted/80 hover:scale-105 pixel-border"
@@ -178,6 +215,14 @@ const ModPackBuilder = () => {
           >
             {isGenerating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
             {isGenerating ? "Building..." : "Build Mod Pack!"}
+          </button>
+          <button
+            disabled={!packName || !category || selectedMods.length === 0 || isPublishing}
+            onClick={handlePublish}
+            className="flex items-center gap-2 rounded bg-secondary px-6 py-3 font-bold text-secondary-foreground transition-all hover:scale-105 pixel-border disabled:opacity-50 disabled:hover:scale-100"
+          >
+            {isPublishing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+            {isPublishing ? "Publishing..." : "Publish to Store"}
           </button>
         </div>
       </div>

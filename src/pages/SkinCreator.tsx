@@ -3,8 +3,9 @@ import TextureUploader from "@/components/TextureUploader";
 import BlockDropdown from "@/components/BlockDropdown";
 import ErrorBoundary from "@/components/ErrorBoundary";
 const SkinPreview3D = lazy(() => import("@/components/SkinPreview3D"));
-import { Download, RotateCcw, Loader2, RotateCw } from "lucide-react";
-import { generateSkinPack } from "@/lib/packGenerator";
+import { Download, RotateCcw, Loader2, RotateCw, Upload } from "lucide-react";
+import { generateSkinPack, generateSkinPackBlob } from "@/lib/packGenerator";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 const skinTypes = [
@@ -32,6 +33,7 @@ const SkinCreator = () => {
   };
 
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
 
   const handleReset = () => {
     setSkinType("");
@@ -48,6 +50,41 @@ const SkinCreator = () => {
       toast.error("Oops! Something went wrong generating your skin pack.");
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const handlePublish = async () => {
+    setIsPublishing(true);
+    try {
+      const blob = await generateSkinPackBlob({ skinType, skinStyle, textureUrl: texture });
+      const fileName = `skin_${skinStyle}_${Date.now()}.mcpack`;
+      const { error: uploadError } = await supabase.storage.from("packs").upload(fileName, blob, { contentType: "application/octet-stream" });
+      if (uploadError) throw uploadError;
+
+      let thumbnailPath: string | null = null;
+      if (texture) {
+        const thumbName = `thumbs/skin_${skinStyle}_${Date.now()}.png`;
+        const thumbBlob = await fetch(texture).then((r) => r.blob());
+        const { error: thumbErr } = await supabase.storage.from("packs").upload(thumbName, thumbBlob, { contentType: "image/png" });
+        if (!thumbErr) thumbnailPath = thumbName;
+      }
+
+      const { error: dbError } = await supabase.from("packs").insert({
+        name: `${skinStyle} Skin`,
+        description: `Custom ${skinStyle} skin for ${skinType} model`,
+        pack_type: "skin",
+        entity_type: skinType,
+        file_path: fileName,
+        thumbnail_path: thumbnailPath,
+      });
+      if (dbError) throw dbError;
+
+      toast.success("Published to the Pack Store! 🎉");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to publish. Please try again.");
+    } finally {
+      setIsPublishing(false);
     }
   };
 
@@ -145,7 +182,7 @@ const SkinCreator = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <button
               onClick={handleReset}
               className="flex items-center gap-2 rounded border-3 border-border bg-muted px-6 py-3 font-bold text-foreground transition-all hover:bg-muted/80 hover:scale-105 pixel-border"
@@ -160,6 +197,14 @@ const SkinCreator = () => {
             >
               {isGenerating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
               {isGenerating ? "Generating..." : "Download Skin Pack!"}
+            </button>
+            <button
+              disabled={!skinType || !skinStyle || isPublishing}
+              onClick={handlePublish}
+              className="flex items-center gap-2 rounded bg-secondary px-6 py-3 font-bold text-secondary-foreground transition-all hover:scale-105 pixel-border disabled:opacity-50 disabled:hover:scale-100"
+            >
+              {isPublishing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+              {isPublishing ? "Publishing..." : "Publish to Store"}
             </button>
           </div>
         </div>
