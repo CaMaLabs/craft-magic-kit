@@ -24,6 +24,18 @@ const premadeSkins: GalleryItem[] = [
   { id: "zombie_hunter", name: "Zombie Hunter", description: "Brave survivor with bandana and gear", emoji: "🧟", stars: 4, tags: ["combat", "survival"], color: "hsl(var(--creeper))" },
   { id: "pirate", name: "Captain Blockbeard", description: "Yarr! A pirate with an eyepatch", emoji: "🏴‍☠️", stars: 3, tags: ["adventure", "fun"], color: "hsl(var(--primary))" },
   { id: "rainbow", name: "Rainbow Steve", description: "Colorful Steve with rainbow gradient", emoji: "🌈", stars: 5, tags: ["colorful", "fun"], color: "hsl(var(--secondary))" },
+  { id: "robot_mech", name: "Mech Pilot", description: "Futuristic mech suit pilot", emoji: "🤖", stars: 5, tags: ["sci-fi", "cool"], color: "hsl(var(--accent))" },
+  { id: "vampire", name: "Count Bloccula", description: "Spooky vampire with cape and fangs", emoji: "🧛", stars: 4, tags: ["spooky", "halloween"], color: "hsl(var(--enderman))" },
+  { id: "superhero", name: "Block Hero", description: "Caped superhero with mask", emoji: "🦸", stars: 5, tags: ["hero", "epic"], color: "hsl(var(--destructive))" },
+  { id: "mermaid", name: "Ocean Mermaid", description: "Shimmering mermaid with coral crown", emoji: "🧜", stars: 4, tags: ["ocean", "magic"], color: "hsl(var(--accent))" },
+  { id: "elf_ranger", name: "Elf Ranger", description: "Forest elf with bow and green cloak", emoji: "🧝", stars: 5, tags: ["fantasy", "nature"], color: "hsl(var(--creeper))" },
+  { id: "samurai", name: "Samurai Warrior", description: "Traditional samurai with katana", emoji: "⚔️", stars: 5, tags: ["combat", "japan"], color: "hsl(var(--destructive))" },
+  { id: "witch_cute", name: "Cute Witch", description: "Friendly witch with purple hat", emoji: "🧙‍♀️", stars: 4, tags: ["magic", "cute"], color: "hsl(var(--enderman))" },
+  { id: "penguin", name: "Penguin Suit", description: "Adorable tuxedo penguin skin", emoji: "🐧", stars: 5, tags: ["cute", "animal"], color: "hsl(var(--foreground))" },
+  { id: "fire_mage", name: "Fire Mage", description: "Blazing fire mage with lava staff", emoji: "🔥", stars: 4, tags: ["magic", "fire"], color: "hsl(var(--lava))" },
+  { id: "alien", name: "Space Alien", description: "Green alien with big eyes", emoji: "👽", stars: 3, tags: ["space", "funny"], color: "hsl(var(--creeper))" },
+  { id: "bear_teddy", name: "Teddy Bear", description: "Fluffy teddy bear character", emoji: "🧸", stars: 5, tags: ["cute", "cozy"], color: "hsl(var(--secondary))" },
+  { id: "chef", name: "Master Chef", description: "Chef with tall hat and apron", emoji: "👨‍🍳", stars: 3, tags: ["food", "fun"], color: "hsl(var(--primary))" },
 ];
 
 const premadeModPacks: GalleryItem[] = [
@@ -33,6 +45,12 @@ const premadeModPacks: GalleryItem[] = [
   { id: "mob_madness", name: "Mob Madness", description: "More mobs, more pets, more chaos!", emoji: "🐉", stars: 5, tags: ["mobs", "adventure"], color: "hsl(var(--gold))" },
   { id: "mini_games", name: "Party Pack", description: "Lucky blocks + fun for mini games", emoji: "🎮", stars: 3, tags: ["minigame", "party"], color: "hsl(var(--sky))" },
   { id: "adventure_kit", name: "Adventure Kit", description: "Everything you need for epic quests", emoji: "🗺️", stars: 4, tags: ["adventure", "tools"], color: "hsl(var(--creeper))" },
+  { id: "pvp_pro", name: "PvP Pro Pack", description: "Competitive PvP tools and maps", emoji: "⚔️", stars: 5, tags: ["pvp", "competitive"], color: "hsl(var(--destructive))" },
+  { id: "skyblock_ultra", name: "Skyblock Ultra", description: "Enhanced skyblock with custom islands", emoji: "🏝️", stars: 5, tags: ["skyblock", "challenge"], color: "hsl(var(--accent))" },
+  { id: "magic_academy", name: "Magic Academy", description: "Spells, wands, and magic schools", emoji: "🪄", stars: 4, tags: ["magic", "schools"], color: "hsl(var(--enderman))" },
+  { id: "tech_craft", name: "TechCraft", description: "Machines, automation, and robots", emoji: "⚙️", stars: 4, tags: ["tech", "machines"], color: "hsl(var(--muted))" },
+  { id: "horror_night", name: "Horror Night", description: "Scary mobs and spooky biomes", emoji: "👻", stars: 3, tags: ["horror", "spooky"], color: "hsl(var(--foreground))" },
+  { id: "farm_life", name: "Farm Life", description: "Crops, animals, and farming tools", emoji: "🌾", stars: 4, tags: ["farming", "peaceful"], color: "hsl(var(--creeper))" },
 ];
 
 const premadeAddons: GalleryItem[] = [
@@ -42,12 +60,24 @@ const premadeAddons: GalleryItem[] = [
   { id: "candy_biome", name: "Candy Land Biome", description: "A sweet biome made of candy!", emoji: "🍭", stars: 5, tags: ["biome", "fun"], color: "hsl(var(--secondary))" },
   { id: "jetpack", name: "Jetpack Item", description: "Fly around with a craftable jetpack", emoji: "🚀", stars: 5, tags: ["item", "flying"], color: "hsl(var(--sky))" },
   { id: "mini_boss", name: "Mini Boss Mobs", description: "Tough new mobs with special drops", emoji: "👾", stars: 4, tags: ["mob", "combat"], color: "hsl(var(--creeper))" },
+  { id: "portal_gun", name: "Portal Gun", description: "Shoot portals to teleport anywhere!", emoji: "🌀", stars: 5, tags: ["item", "teleport"], color: "hsl(var(--accent))" },
+  { id: "pet_cat_breeds", name: "Cat Breeds", description: "10 new cat breeds with unique skins", emoji: "🐱", stars: 5, tags: ["mob", "pets"], color: "hsl(var(--gold))" },
+  { id: "underwater_temple", name: "Underwater Temple", description: "New ocean structure with treasures", emoji: "🏛️", stars: 4, tags: ["structure", "ocean"], color: "hsl(var(--accent))" },
+  { id: "magic_wands", name: "Magic Wands", description: "Craftable wands with special spells", emoji: "🪄", stars: 5, tags: ["item", "magic"], color: "hsl(var(--enderman))" },
+  { id: "rideable_mobs", name: "Rideable Mobs", description: "Ride spiders, bears, and more!", emoji: "🐻", stars: 4, tags: ["mob", "riding"], color: "hsl(var(--secondary))" },
+  { id: "custom_villagers", name: "Custom Villagers", description: "New villager jobs and trades", emoji: "🧑‍🌾", stars: 3, tags: ["mob", "village"], color: "hsl(var(--primary))" },
+  { id: "gravity_blocks", name: "Gravity Blocks", description: "Blocks that float and defy gravity", emoji: "🫧", stars: 4, tags: ["blocks", "physics"], color: "hsl(var(--accent))" },
+  { id: "neon_armor", name: "Neon Armor Set", description: "Glowing neon armor in all colors", emoji: "💡", stars: 5, tags: ["armor", "glow"], color: "hsl(var(--primary))" },
 ];
 
 const skinStyleMap: Record<string, string> = {
   ninja: "warrior", astronaut: "explorer", dragon_knight: "warrior",
   pixel_cat: "animal", ice_wizard: "wizard", zombie_hunter: "warrior",
-  pirate: "explorer", rainbow: "custom",
+  pirate: "explorer", rainbow: "custom", robot_mech: "robot",
+  vampire: "custom", superhero: "custom", mermaid: "custom",
+  elf_ranger: "explorer", samurai: "warrior", witch_cute: "wizard",
+  penguin: "animal", fire_mage: "wizard", alien: "custom",
+  bear_teddy: "animal", chef: "custom",
 };
 
 const modPackMap: Record<string, string[]> = {
@@ -57,6 +87,12 @@ const modPackMap: Record<string, string[]> = {
   mob_madness: ["More Mobs", "More Pets"],
   mini_games: ["Lucky Blocks"],
   adventure_kit: ["Better Tools", "Backpacks", "More Mobs"],
+  pvp_pro: ["Better Tools", "More Mobs"],
+  skyblock_ultra: ["Better Tools", "Backpacks"],
+  magic_academy: ["Lucky Blocks", "More Mobs"],
+  tech_craft: ["Better Tools", "Vehicles"],
+  horror_night: ["More Mobs"],
+  farm_life: ["Better Tools", "More Pets"],
 };
 
 const addonTypeMap: Record<string, { addonType: string; entityType: string }> = {
@@ -66,6 +102,14 @@ const addonTypeMap: Record<string, { addonType: string; entityType: string }> = 
   candy_biome: { addonType: "both", entityType: "biome" },
   jetpack: { addonType: "both", entityType: "item" },
   mini_boss: { addonType: "behavior", entityType: "mob" },
+  portal_gun: { addonType: "both", entityType: "item" },
+  pet_cat_breeds: { addonType: "both", entityType: "mob" },
+  underwater_temple: { addonType: "both", entityType: "biome" },
+  magic_wands: { addonType: "both", entityType: "item" },
+  rideable_mobs: { addonType: "both", entityType: "mob" },
+  custom_villagers: { addonType: "behavior", entityType: "mob" },
+  gravity_blocks: { addonType: "both", entityType: "block" },
+  neon_armor: { addonType: "resource", entityType: "item" },
 };
 
 const Gallery = () => {

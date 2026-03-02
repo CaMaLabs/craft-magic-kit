@@ -1,1 +1,4 @@
 project_id = "inuzcpdbevtrdhiwduxq"
+
+[functions.generate-texture]
+verify_jwt = false
