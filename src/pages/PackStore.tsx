@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Download, QrCode, Search, Package, Paintbrush, Puzzle, Layers } from "lucide-react";
+import { Download, QrCode, Search, Package, Paintbrush, Puzzle, Layers, Trash2 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { toast } from "sonner";
 
@@ -70,6 +70,23 @@ const PackStore = () => {
       )
     );
     toast.success(`Downloading ${pack.name}! 🎉`);
+  };
+
+  const handleDelete = async (pack: Pack) => {
+    if (!window.confirm(`Delete "${pack.name}"? This can't be undone!`)) return;
+
+    await supabase.storage.from("packs").remove([pack.file_path]);
+    if (pack.thumbnail_path) {
+      await supabase.storage.from("packs").remove([pack.thumbnail_path]);
+    }
+
+    const { error } = await supabase.from("packs").delete().eq("id", pack.id);
+    if (error) {
+      toast.error("Failed to delete pack");
+      return;
+    }
+    setPacks((prev) => prev.filter((p) => p.id !== pack.id));
+    toast.success(`"${pack.name}" deleted! 🗑️`);
   };
 
   const filteredPacks = packs.filter((p) => {
@@ -217,6 +234,13 @@ const PackStore = () => {
                     title="Show QR Code"
                   >
                     <QrCode className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(pack)}
+                    className="flex items-center justify-center rounded border-3 border-destructive/50 bg-destructive/10 px-3 py-2 text-sm font-bold text-destructive transition-all hover:scale-105 hover:bg-destructive/20 pixel-border"
+                    title="Delete pack"
+                  >
+                    <Trash2 className="h-4 w-4" />
                   </button>
                 </div>
 
