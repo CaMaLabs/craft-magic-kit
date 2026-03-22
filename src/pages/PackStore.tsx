@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Download, QrCode, Search, Package, Paintbrush, Puzzle, Layers } from "lucide-react";
+import { Download, QrCode, Search, Package, Paintbrush, Puzzle, Layers, Trash2 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { toast } from "sonner";
 
