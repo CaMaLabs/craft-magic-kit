@@ -1,0 +1,1 @@
+CREATE POLICY "Anyone can delete packs" ON public.packs FOR DELETE TO public USING (true);
