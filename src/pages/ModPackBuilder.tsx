@@ -69,6 +69,12 @@ const ModPackBuilder = () => {
   const handlePublish = async () => {
     setIsPublishing(true);
     try {
+      const { data: existing } = await supabase.from("packs").select("id").eq("name", packName).limit(1);
+      if (existing && existing.length > 0) {
+        toast.error(`"${packName}" is already in the store! Use a different name.`);
+        setIsPublishing(false);
+        return;
+      }
       const modLabels = selectedMods.map((v) => availableMods.find((m) => m.value === v)?.label || v);
       const blob = await generateModPackBlob({ packName, category, mods: modLabels, iconUrl: icon });
       const fileName = `modpack_${packName.replace(/\s/g, "_")}_${Date.now()}.mcaddon`;

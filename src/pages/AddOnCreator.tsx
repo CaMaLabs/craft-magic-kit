@@ -202,6 +202,13 @@ const AddOnCreator = () => {
   const handlePublish = async () => {
     setIsPublishing(true);
     try {
+      // Prevent duplicates
+      const { data: existing } = await supabase.from("packs").select("id").eq("name", addonName).limit(1);
+      if (existing && existing.length > 0) {
+        toast.error(`"${addonName}" is already in the store! Use a different name.`);
+        setIsPublishing(false);
+        return;
+      }
       const blob = await generateAddonBlob({ addonName, addonType, entityType, difficulty, textureUrl: texture });
       const fileName = `${addonName.replace(/\s/g, "_")}_${Date.now()}.mcaddon`;
 
