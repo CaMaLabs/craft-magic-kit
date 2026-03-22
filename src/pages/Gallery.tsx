@@ -36,6 +36,26 @@ const premadeSkins: GalleryItem[] = [
   { id: "alien", name: "Space Alien", description: "Green alien with big eyes", emoji: "👽", stars: 3, tags: ["space", "funny"], color: "hsl(var(--creeper))" },
   { id: "bear_teddy", name: "Teddy Bear", description: "Fluffy teddy bear character", emoji: "🧸", stars: 5, tags: ["cute", "cozy"], color: "hsl(var(--secondary))" },
   { id: "chef", name: "Master Chef", description: "Chef with tall hat and apron", emoji: "👨‍🍳", stars: 3, tags: ["food", "fun"], color: "hsl(var(--primary))" },
+  { id: "werewolf", name: "Werewolf", description: "Transforming werewolf with glowing eyes", emoji: "🐺", stars: 5, tags: ["spooky", "transformation"], color: "hsl(var(--secondary))" },
+  { id: "fairy_princess", name: "Fairy Princess", description: "Sparkly fairy with butterfly wings", emoji: "🧚", stars: 5, tags: ["magic", "cute"], color: "hsl(var(--accent))" },
+  { id: "cowboy", name: "Wild West Cowboy", description: "Rootin' tootin' cowboy with hat and boots", emoji: "🤠", stars: 4, tags: ["adventure", "western"], color: "hsl(var(--secondary))" },
+  { id: "deep_sea_diver", name: "Deep Sea Diver", description: "Retro deep sea diving suit", emoji: "🤿", stars: 4, tags: ["ocean", "adventure"], color: "hsl(var(--accent))" },
+  { id: "cyborg", name: "Cyborg 3000", description: "Half-human half-robot cyborg warrior", emoji: "🦾", stars: 5, tags: ["sci-fi", "combat"], color: "hsl(var(--muted))" },
+  { id: "clown_happy", name: "Happy Clown", description: "Colorful circus clown with big smile", emoji: "🤡", stars: 3, tags: ["fun", "colorful"], color: "hsl(var(--primary))" },
+  { id: "pharaoh", name: "Pharaoh King", description: "Ancient Egyptian pharaoh with gold mask", emoji: "🏺", stars: 5, tags: ["ancient", "epic"], color: "hsl(var(--gold))" },
+  { id: "ghost_friendly", name: "Friendly Ghost", description: "Cute transparent ghost with bow tie", emoji: "👻", stars: 4, tags: ["spooky", "cute"], color: "hsl(var(--muted))" },
+  { id: "rock_star", name: "Rock Star", description: "Electric guitar-wielding rock musician", emoji: "🎸", stars: 4, tags: ["music", "cool"], color: "hsl(var(--destructive))" },
+  { id: "knight_dark", name: "Dark Knight", description: "Mysterious dark armored knight", emoji: "🗡️", stars: 5, tags: ["combat", "dark"], color: "hsl(var(--foreground))" },
+  { id: "fox_girl", name: "Fox Girl", description: "Anime-style fox girl with fluffy tail", emoji: "🦊", stars: 5, tags: ["anime", "cute"], color: "hsl(var(--lava))" },
+  { id: "bee_keeper", name: "Beekeeper", description: "Friendly beekeeper with honeycomb suit", emoji: "🐝", stars: 3, tags: ["nature", "peaceful"], color: "hsl(var(--gold))" },
+  { id: "lava_demon", name: "Lava Demon", description: "Fiery nether demon with horns", emoji: "😈", stars: 5, tags: ["nether", "epic"], color: "hsl(var(--lava))" },
+  { id: "snowman_frosty", name: "Frosty Snowman", description: "Jolly snowman with carrot nose and scarf", emoji: "⛄", stars: 4, tags: ["winter", "cute"], color: "hsl(var(--muted))" },
+  { id: "steampunk", name: "Steampunk Explorer", description: "Victorian steampunk adventurer with goggles", emoji: "⚙️", stars: 5, tags: ["steampunk", "adventure"], color: "hsl(var(--secondary))" },
+  { id: "panda_warrior", name: "Panda Warrior", description: "Kung-fu fighting panda warrior", emoji: "🐼", stars: 5, tags: ["combat", "animal"], color: "hsl(var(--foreground))" },
+  { id: "angel_guardian", name: "Guardian Angel", description: "Heavenly angel with golden wings and halo", emoji: "😇", stars: 5, tags: ["magic", "epic"], color: "hsl(var(--gold))" },
+  { id: "skeleton_pirate", name: "Skeleton Pirate", description: "Undead pirate skeleton captain", emoji: "☠️", stars: 4, tags: ["spooky", "adventure"], color: "hsl(var(--muted))" },
+  { id: "bunny_suit", name: "Bunny Suit", description: "Fluffy pink bunny rabbit skin", emoji: "🐰", stars: 4, tags: ["cute", "animal"], color: "hsl(var(--accent))" },
+  { id: "enderman_suit", name: "Enderman Suit", description: "Tall dark enderman disguise skin", emoji: "🟣", stars: 5, tags: ["end", "disguise"], color: "hsl(var(--enderman))" },
 ];
 
 const premadeModPacks: GalleryItem[] = [
@@ -51,6 +71,22 @@ const premadeModPacks: GalleryItem[] = [
   { id: "tech_craft", name: "TechCraft", description: "Machines, automation, and robots", emoji: "⚙️", stars: 4, tags: ["tech", "machines"], color: "hsl(var(--muted))" },
   { id: "horror_night", name: "Horror Night", description: "Scary mobs and spooky biomes", emoji: "👻", stars: 3, tags: ["horror", "spooky"], color: "hsl(var(--foreground))" },
   { id: "farm_life", name: "Farm Life", description: "Crops, animals, and farming tools", emoji: "🌾", stars: 4, tags: ["farming", "peaceful"], color: "hsl(var(--creeper))" },
+  { id: "medieval_kingdom", name: "Medieval Kingdom", description: "Castles, knights, and medieval villages", emoji: "🏰", stars: 5, tags: ["medieval", "building"], color: "hsl(var(--secondary))" },
+  { id: "space_odyssey", name: "Space Odyssey", description: "Rockets, space stations, and alien planets", emoji: "🚀", stars: 5, tags: ["space", "sci-fi"], color: "hsl(var(--accent))" },
+  { id: "underwater_world", name: "Underwater World", description: "Submarines, coral cities, and sea creatures", emoji: "🌊", stars: 4, tags: ["ocean", "adventure"], color: "hsl(var(--accent))" },
+  { id: "dinosaur_age", name: "Dinosaur Age", description: "Dig up fossils and ride dinosaurs!", emoji: "🦖", stars: 5, tags: ["dinosaurs", "adventure"], color: "hsl(var(--creeper))" },
+  { id: "ninja_training", name: "Ninja Training", description: "Stealth, parkour, and martial arts", emoji: "🥷", stars: 4, tags: ["ninja", "combat"], color: "hsl(var(--foreground))" },
+  { id: "candy_world", name: "Candy World", description: "Everything is made of candy and sweets!", emoji: "🍬", stars: 5, tags: ["fun", "sweet"], color: "hsl(var(--primary))" },
+  { id: "volcano_island", name: "Volcano Island", description: "Volcanic island survival with eruptions", emoji: "🌋", stars: 4, tags: ["survival", "challenge"], color: "hsl(var(--lava))" },
+  { id: "pirate_seas", name: "Pirate Seas", description: "Ships, treasure maps, and sea battles", emoji: "🏴‍☠️", stars: 5, tags: ["pirate", "adventure"], color: "hsl(var(--secondary))" },
+  { id: "wizard_wars", name: "Wizard Wars", description: "Epic wizard duels and spell casting", emoji: "🧙", stars: 4, tags: ["magic", "pvp"], color: "hsl(var(--enderman))" },
+  { id: "racing_mania", name: "Racing Mania", description: "Custom karts, tracks, and racing!", emoji: "🏎️", stars: 4, tags: ["racing", "fun"], color: "hsl(var(--destructive))" },
+  { id: "zoo_tycoon", name: "Zoo Tycoon", description: "Build and manage your own zoo", emoji: "🦁", stars: 4, tags: ["management", "animals"], color: "hsl(var(--gold))" },
+  { id: "super_heroes_pack", name: "Super Heroes Pack", description: "Powers, capes, and villain battles", emoji: "🦸", stars: 5, tags: ["hero", "combat"], color: "hsl(var(--destructive))" },
+  { id: "ice_age", name: "Ice Age Pack", description: "Frozen biomes, mammoths, and igloos", emoji: "🧊", stars: 4, tags: ["winter", "survival"], color: "hsl(var(--accent))" },
+  { id: "pixel_art_studio", name: "Pixel Art Studio", description: "Special blocks and tools for pixel art", emoji: "🎨", stars: 3, tags: ["creative", "art"], color: "hsl(var(--primary))" },
+  { id: "dungeon_crawler", name: "Dungeon Crawler", description: "Procedural dungeons with epic boss fights", emoji: "🏛️", stars: 5, tags: ["dungeon", "combat"], color: "hsl(var(--enderman))" },
+  { id: "mythical_beasts", name: "Mythical Beasts", description: "Dragons, phoenixes, and legendary creatures", emoji: "🐲", stars: 5, tags: ["mythical", "mobs"], color: "hsl(var(--lava))" },
 ];
 
 const premadeAddons: GalleryItem[] = [
@@ -68,6 +104,25 @@ const premadeAddons: GalleryItem[] = [
   { id: "custom_villagers", name: "Custom Villagers", description: "New villager jobs and trades", emoji: "🧑‍🌾", stars: 3, tags: ["mob", "village"], color: "hsl(var(--primary))" },
   { id: "gravity_blocks", name: "Gravity Blocks", description: "Blocks that float and defy gravity", emoji: "🫧", stars: 4, tags: ["blocks", "physics"], color: "hsl(var(--accent))" },
   { id: "neon_armor", name: "Neon Armor Set", description: "Glowing neon armor in all colors", emoji: "💡", stars: 5, tags: ["armor", "glow"], color: "hsl(var(--primary))" },
+  { id: "lucky_sword", name: "Lucky Sword", description: "Random enchantment every time you swing!", emoji: "🗡️", stars: 5, tags: ["item", "combat"], color: "hsl(var(--gold))" },
+  { id: "pet_dinosaur", name: "Pet Dinosaur", description: "Hatch and raise your own baby T-Rex", emoji: "🦖", stars: 5, tags: ["mob", "pets"], color: "hsl(var(--creeper))" },
+  { id: "cloud_biome", name: "Cloud Kingdom Biome", description: "A floating biome above the clouds", emoji: "☁️", stars: 5, tags: ["biome", "flying"], color: "hsl(var(--muted))" },
+  { id: "grapple_hook", name: "Grappling Hook", description: "Swing between mountains like a hero!", emoji: "🪝", stars: 4, tags: ["item", "movement"], color: "hsl(var(--foreground))" },
+  { id: "mini_dragon", name: "Mini Dragon Pet", description: "Tiny shoulder dragon that breathes fire", emoji: "🐉", stars: 5, tags: ["mob", "pets"], color: "hsl(var(--lava))" },
+  { id: "slime_boots", name: "Slime Boots", description: "Bouncy boots that let you jump super high", emoji: "🟢", stars: 4, tags: ["item", "movement"], color: "hsl(var(--creeper))" },
+  { id: "mushroom_biome_neon", name: "Neon Mushroom Biome", description: "Glowing mushroom forest dimension", emoji: "🍄", stars: 5, tags: ["biome", "glow"], color: "hsl(var(--enderman))" },
+  { id: "crystal_caves", name: "Crystal Caves", description: "Underground caves filled with crystals", emoji: "💎", stars: 4, tags: ["biome", "mining"], color: "hsl(var(--diamond))" },
+  { id: "tame_enderman", name: "Tame Enderman", description: "Befriend endermen and they teleport you!", emoji: "🟣", stars: 5, tags: ["mob", "pets"], color: "hsl(var(--enderman))" },
+  { id: "paint_gun", name: "Paint Gun", description: "Color any block any color you want!", emoji: "🎨", stars: 4, tags: ["item", "creative"], color: "hsl(var(--primary))" },
+  { id: "elemental_swords", name: "Elemental Swords", description: "Fire, Ice, Lightning, and Void swords", emoji: "⚔️", stars: 5, tags: ["item", "combat"], color: "hsl(var(--lava))" },
+  { id: "guard_dog", name: "Guard Dogs", description: "Trained guard dogs that protect your base", emoji: "🐕", stars: 4, tags: ["mob", "defense"], color: "hsl(var(--secondary))" },
+  { id: "backpack_addon", name: "Wearable Backpack", description: "Extra inventory space with a backpack", emoji: "🎒", stars: 4, tags: ["item", "utility"], color: "hsl(var(--secondary))" },
+  { id: "weather_control", name: "Weather Controller", description: "Change weather with a magical staff!", emoji: "🌦️", stars: 5, tags: ["item", "magic"], color: "hsl(var(--accent))" },
+  { id: "vampire_mob", name: "Vampire Mob", description: "Night-dwelling vampire with bat form", emoji: "🧛", stars: 4, tags: ["mob", "spooky"], color: "hsl(var(--enderman))" },
+  { id: "underwater_base", name: "Underwater Base Kit", description: "Glass domes and airlocks for ocean bases", emoji: "🫧", stars: 4, tags: ["blocks", "ocean"], color: "hsl(var(--accent))" },
+  { id: "hover_board", name: "Hover Board", description: "Futuristic floating hover board vehicle", emoji: "🛹", stars: 5, tags: ["item", "movement"], color: "hsl(var(--primary))" },
+  { id: "phoenix_pet", name: "Phoenix Pet", description: "Fire bird that revives you when you die", emoji: "🔥", stars: 5, tags: ["mob", "pets"], color: "hsl(var(--lava))" },
+  { id: "treasure_hunter", name: "Treasure Hunter Kit", description: "Metal detector and treasure maps", emoji: "🏴‍☠️", stars: 4, tags: ["item", "adventure"], color: "hsl(var(--gold))" },
 ];
 
 const skinStyleMap: Record<string, string> = {
@@ -78,6 +133,13 @@ const skinStyleMap: Record<string, string> = {
   elf_ranger: "explorer", samurai: "warrior", witch_cute: "wizard",
   penguin: "animal", fire_mage: "wizard", alien: "custom",
   bear_teddy: "animal", chef: "custom",
+  werewolf: "custom", fairy_princess: "custom", cowboy: "explorer",
+  deep_sea_diver: "explorer", cyborg: "robot", clown_happy: "custom",
+  pharaoh: "custom", ghost_friendly: "custom", rock_star: "custom",
+  knight_dark: "warrior", fox_girl: "animal", bee_keeper: "custom",
+  lava_demon: "custom", snowman_frosty: "custom", steampunk: "explorer",
+  panda_warrior: "warrior", angel_guardian: "custom", skeleton_pirate: "warrior",
+  bunny_suit: "animal", enderman_suit: "custom",
 };
 
 const modPackMap: Record<string, string[]> = {
@@ -93,6 +155,22 @@ const modPackMap: Record<string, string[]> = {
   tech_craft: ["Better Tools", "Vehicles"],
   horror_night: ["More Mobs"],
   farm_life: ["Better Tools", "More Pets"],
+  medieval_kingdom: ["Furniture Mod", "Better Tools", "More Mobs"],
+  space_odyssey: ["Vehicles", "Better Tools", "Backpacks"],
+  underwater_world: ["More Mobs", "Better Tools"],
+  dinosaur_age: ["More Mobs", "Better Tools", "Lucky Blocks"],
+  ninja_training: ["Better Tools", "More Mobs"],
+  candy_world: ["Lucky Blocks", "Furniture Mod"],
+  volcano_island: ["Super TNT", "Better Tools", "More Mobs"],
+  pirate_seas: ["Vehicles", "Better Tools", "More Mobs"],
+  wizard_wars: ["Lucky Blocks", "More Mobs", "Better Tools"],
+  racing_mania: ["Vehicles", "Better Tools"],
+  zoo_tycoon: ["More Mobs", "More Pets", "Furniture Mod"],
+  super_heroes_pack: ["Better Tools", "More Mobs", "Backpacks"],
+  ice_age: ["More Mobs", "Better Tools"],
+  pixel_art_studio: ["Furniture Mod"],
+  dungeon_crawler: ["Better Tools", "More Mobs", "Lucky Blocks"],
+  mythical_beasts: ["More Mobs", "More Pets", "Better Tools"],
 };
 
 const addonTypeMap: Record<string, { addonType: string; entityType: string }> = {
@@ -110,6 +188,25 @@ const addonTypeMap: Record<string, { addonType: string; entityType: string }> = 
   custom_villagers: { addonType: "behavior", entityType: "mob" },
   gravity_blocks: { addonType: "both", entityType: "block" },
   neon_armor: { addonType: "resource", entityType: "item" },
+  lucky_sword: { addonType: "both", entityType: "item" },
+  pet_dinosaur: { addonType: "both", entityType: "mob" },
+  cloud_biome: { addonType: "both", entityType: "biome" },
+  grapple_hook: { addonType: "both", entityType: "item" },
+  mini_dragon: { addonType: "both", entityType: "mob" },
+  slime_boots: { addonType: "both", entityType: "item" },
+  mushroom_biome_neon: { addonType: "both", entityType: "biome" },
+  crystal_caves: { addonType: "both", entityType: "biome" },
+  tame_enderman: { addonType: "behavior", entityType: "mob" },
+  paint_gun: { addonType: "both", entityType: "item" },
+  elemental_swords: { addonType: "both", entityType: "item" },
+  guard_dog: { addonType: "behavior", entityType: "mob" },
+  backpack_addon: { addonType: "both", entityType: "item" },
+  weather_control: { addonType: "both", entityType: "item" },
+  vampire_mob: { addonType: "both", entityType: "mob" },
+  underwater_base: { addonType: "both", entityType: "block" },
+  hover_board: { addonType: "both", entityType: "item" },
+  phoenix_pet: { addonType: "both", entityType: "mob" },
+  treasure_hunter: { addonType: "both", entityType: "item" },
 };
 
 const Gallery = () => {
@@ -158,6 +255,9 @@ const Gallery = () => {
       <div className="mb-8 text-center">
         <h1 className="font-pixel text-xl md:text-2xl text-foreground mb-2">🏪 Gallery</h1>
         <p className="text-lg font-semibold text-muted-foreground">Browse and download ready-made packs!</p>
+        <p className="text-sm text-muted-foreground mt-1">
+          {premadeSkins.length} skins • {premadeModPacks.length} mod packs • {premadeAddons.length} add-ons
+        </p>
       </div>
 
       {/* Tabs */}
