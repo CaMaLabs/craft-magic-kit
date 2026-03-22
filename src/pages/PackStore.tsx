@@ -218,6 +218,13 @@ const PackStore = () => {
                   >
                     <QrCode className="h-4 w-4" />
                   </button>
+                  <button
+                    onClick={() => handleDelete(pack)}
+                    className="flex items-center justify-center rounded border-3 border-destructive/50 bg-destructive/10 px-3 py-2 text-sm font-bold text-destructive transition-all hover:scale-105 hover:bg-destructive/20 pixel-border"
+                    title="Delete pack"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 </div>
 
                 {/* QR Code (toggled) */}
