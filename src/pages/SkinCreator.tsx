@@ -56,6 +56,13 @@ const SkinCreator = () => {
   const handlePublish = async () => {
     setIsPublishing(true);
     try {
+      const packName = `${skinStyle} Skin`;
+      const { data: existing } = await supabase.from("packs").select("id").eq("name", packName).limit(1);
+      if (existing && existing.length > 0) {
+        toast.error(`"${packName}" is already in the store! Change the style or upload a unique texture.`);
+        setIsPublishing(false);
+        return;
+      }
       const blob = await generateSkinPackBlob({ skinType, skinStyle, textureUrl: texture });
       const fileName = `skin_${skinStyle}_${Date.now()}.mcpack`;
       const { error: uploadError } = await supabase.storage.from("packs").upload(fileName, blob, { contentType: "application/octet-stream" });
