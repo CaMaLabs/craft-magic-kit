@@ -72,6 +72,23 @@ const PackStore = () => {
     toast.success(`Downloading ${pack.name}! 🎉`);
   };
 
+  const handleDelete = async (pack: Pack) => {
+    if (!window.confirm(`Delete "${pack.name}"? This can't be undone!`)) return;
+
+    await supabase.storage.from("packs").remove([pack.file_path]);
+    if (pack.thumbnail_path) {
+      await supabase.storage.from("packs").remove([pack.thumbnail_path]);
+    }
+
+    const { error } = await supabase.from("packs").delete().eq("id", pack.id);
+    if (error) {
+      toast.error("Failed to delete pack");
+      return;
+    }
+    setPacks((prev) => prev.filter((p) => p.id !== pack.id));
+    toast.success(`"${pack.name}" deleted! 🗑️`);
+  };
+
   const filteredPacks = packs.filter((p) => {
     const matchesSearch =
       p.name.toLowerCase().includes(search.toLowerCase()) ||
