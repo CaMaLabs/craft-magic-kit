@@ -9,7 +9,7 @@ export interface TextureItem {
   color: string;
 }
 
-export type TextureCategory = "blocks" | "items" | "mobs" | "nature" | "building" | "food" | "weapons" | "armor" | "decoration" | "redstone";
+export type TextureCategory = "blocks" | "items" | "mobs" | "nature" | "building" | "food" | "weapons" | "armor" | "decoration" | "redstone" | "nether" | "end" | "ocean" | "tools" | "magic";
 
 export const textureCategories: { key: TextureCategory; label: string; emoji: string }[] = [
   { key: "blocks", label: "Blocks", emoji: "🧱" },
@@ -18,14 +18,19 @@ export const textureCategories: { key: TextureCategory; label: string; emoji: st
   { key: "items", label: "Items", emoji: "⚒️" },
   { key: "weapons", label: "Weapons", emoji: "⚔️" },
   { key: "armor", label: "Armor", emoji: "🛡️" },
+  { key: "tools", label: "Tools", emoji: "🔧" },
   { key: "food", label: "Food", emoji: "🍎" },
   { key: "mobs", label: "Mobs", emoji: "🐾" },
   { key: "decoration", label: "Decor", emoji: "🪴" },
   { key: "redstone", label: "Redstone", emoji: "🔴" },
+  { key: "nether", label: "Nether", emoji: "🔥" },
+  { key: "end", label: "End", emoji: "🌀" },
+  { key: "ocean", label: "Ocean", emoji: "🌊" },
+  { key: "magic", label: "Magic", emoji: "✨" },
 ];
 
 export const textureLibrary: TextureItem[] = [
-  // === BLOCKS (20) ===
+  // === BLOCKS (30) ===
   { id: "stone_brick_mossy", name: "Mossy Stone Brick", category: "blocks", subcategory: "Stone", emoji: "🧱", description: "Weathered stone bricks covered in moss", tags: ["stone", "mossy", "medieval"], color: "hsl(var(--creeper))" },
   { id: "obsidian_cracked", name: "Cracked Obsidian", category: "blocks", subcategory: "Stone", emoji: "🟣", description: "Dark obsidian with glowing purple cracks", tags: ["obsidian", "nether", "dark"], color: "hsl(var(--enderman))" },
   { id: "diamond_block_shimmer", name: "Shimmering Diamond", category: "blocks", subcategory: "Ore", emoji: "💎", description: "Brilliant diamond block with sparkle effect", tags: ["diamond", "precious", "shiny"], color: "hsl(var(--diamond))" },
@@ -46,8 +51,18 @@ export const textureLibrary: TextureItem[] = [
   { id: "sandstone_hieroglyph", name: "Hieroglyph Sandstone", category: "blocks", subcategory: "Sand", emoji: "🏺", description: "Ancient Egyptian hieroglyph sandstone", tags: ["desert", "ancient", "egypt"], color: "hsl(var(--gold))" },
   { id: "bookshelf_enchanted", name: "Enchanted Bookshelf", category: "blocks", subcategory: "Wood", emoji: "📚", description: "Glowing enchanted bookshelf", tags: ["enchanting", "magic", "books"], color: "hsl(var(--secondary))" },
   { id: "tnt_neon", name: "Neon TNT", category: "blocks", subcategory: "Explosive", emoji: "💣", description: "Glowing neon-colored TNT block", tags: ["tnt", "explosive", "neon"], color: "hsl(var(--destructive))" },
+  { id: "deepslate_sculk", name: "Sculk Deepslate", category: "blocks", subcategory: "Deep", emoji: "🫧", description: "Deep dark sculk-infused deepslate", tags: ["sculk", "deep", "dark"], color: "hsl(var(--enderman))" },
+  { id: "tuff_polished", name: "Polished Tuff", category: "blocks", subcategory: "Stone", emoji: "🪨", description: "Smooth polished tuff block", tags: ["tuff", "polished", "smooth"], color: "hsl(var(--muted))" },
+  { id: "quartz_chiseled", name: "Chiseled Quartz", category: "blocks", subcategory: "Stone", emoji: "🏛️", description: "Decorative chiseled quartz with sun motif", tags: ["quartz", "chiseled", "fancy"], color: "hsl(var(--muted))" },
+  { id: "basalt_polished", name: "Polished Basalt", category: "blocks", subcategory: "Stone", emoji: "⬛", description: "Smooth polished basalt column", tags: ["basalt", "polished", "nether"], color: "hsl(var(--foreground))" },
+  { id: "calcite_smooth", name: "Smooth Calcite", category: "blocks", subcategory: "Stone", emoji: "⬜", description: "Creamy smooth calcite block", tags: ["calcite", "smooth", "geode"], color: "hsl(var(--muted))" },
+  { id: "mud_brick", name: "Mud Brick", category: "blocks", subcategory: "Clay", emoji: "🟫", description: "Rustic dried mud brick block", tags: ["mud", "brick", "mangrove"], color: "hsl(var(--secondary))" },
+  { id: "honeycomb_block", name: "Honeycomb Block", category: "blocks", subcategory: "Natural", emoji: "🐝", description: "Sweet honeycomb hexagonal pattern", tags: ["honeycomb", "bee", "sweet"], color: "hsl(var(--gold))" },
+  { id: "crying_obsidian", name: "Crying Obsidian", category: "blocks", subcategory: "Stone", emoji: "😭", description: "Purple-dripping respawn obsidian", tags: ["obsidian", "crying", "respawn"], color: "hsl(var(--enderman))" },
+  { id: "dripstone_pointed", name: "Pointed Dripstone", category: "blocks", subcategory: "Natural", emoji: "🔻", description: "Sharp stalactite/stalagmite block", tags: ["dripstone", "cave", "pointed"], color: "hsl(var(--secondary))" },
+  { id: "mangrove_wood", name: "Mangrove Wood", category: "blocks", subcategory: "Wood", emoji: "🌳", description: "Reddish mangrove log and planks", tags: ["mangrove", "wood", "swamp"], color: "hsl(var(--destructive))" },
 
-  // === NATURE (15) ===
+  // === NATURE (20) ===
   { id: "oak_leaves_autumn", name: "Autumn Oak Leaves", category: "nature", subcategory: "Leaves", emoji: "🍂", description: "Beautiful fall-colored oak leaves", tags: ["autumn", "leaves", "orange"], color: "hsl(var(--secondary))" },
   { id: "cherry_blossom", name: "Cherry Blossoms", category: "nature", subcategory: "Leaves", emoji: "🌸", description: "Pink cherry blossom leaves", tags: ["cherry", "pink", "spring"], color: "hsl(var(--accent))" },
   { id: "bamboo_tropical", name: "Tropical Bamboo", category: "nature", subcategory: "Plants", emoji: "🎍", description: "Lush tropical bamboo stalks", tags: ["bamboo", "jungle", "green"], color: "hsl(var(--creeper))" },
@@ -63,8 +78,13 @@ export const textureLibrary: TextureItem[] = [
   { id: "snow_sparkling", name: "Sparkling Snow", category: "nature", subcategory: "Ground", emoji: "❄️", description: "Fresh snow with diamond sparkles", tags: ["snow", "winter", "sparkle"], color: "hsl(var(--accent))" },
   { id: "moss_ancient", name: "Ancient Moss", category: "nature", subcategory: "Ground", emoji: "🌿", description: "Thick ancient moss carpet", tags: ["moss", "lush", "green"], color: "hsl(var(--creeper))" },
   { id: "lily_pad_lotus", name: "Lotus Lily Pad", category: "nature", subcategory: "Water", emoji: "🪷", description: "Elegant lotus flower on lily pad", tags: ["lotus", "water", "flower"], color: "hsl(var(--creeper))" },
+  { id: "wisteria_vine", name: "Wisteria Vine", category: "nature", subcategory: "Plants", emoji: "💜", description: "Hanging purple wisteria blossoms", tags: ["wisteria", "purple", "hanging"], color: "hsl(var(--enderman))" },
+  { id: "fern_giant", name: "Giant Fern", category: "nature", subcategory: "Plants", emoji: "🌿", description: "Prehistoric oversized fern fronds", tags: ["fern", "giant", "prehistoric"], color: "hsl(var(--creeper))" },
+  { id: "flower_lavender", name: "Lavender Field", category: "nature", subcategory: "Flowers", emoji: "💐", description: "Fragrant purple lavender patch", tags: ["lavender", "purple", "field"], color: "hsl(var(--enderman))" },
+  { id: "tree_sakura", name: "Sakura Tree", category: "nature", subcategory: "Trees", emoji: "🌸", description: "Full pink sakura tree trunk and canopy", tags: ["sakura", "tree", "pink"], color: "hsl(var(--accent))" },
+  { id: "flower_orchid", name: "Jungle Orchid", category: "nature", subcategory: "Flowers", emoji: "🌺", description: "Exotic tropical jungle orchid", tags: ["orchid", "jungle", "exotic"], color: "hsl(var(--accent))" },
 
-  // === BUILDING (12) ===
+  // === BUILDING (15) ===
   { id: "brick_medieval", name: "Medieval Brick", category: "building", subcategory: "Brick", emoji: "🏰", description: "Aged medieval castle bricks", tags: ["medieval", "castle", "brick"], color: "hsl(var(--secondary))" },
   { id: "marble_white", name: "White Marble", category: "building", subcategory: "Stone", emoji: "🏛️", description: "Polished white marble with veins", tags: ["marble", "fancy", "white"], color: "hsl(var(--muted))" },
   { id: "wood_dark_oak_carved", name: "Carved Dark Oak", category: "building", subcategory: "Wood", emoji: "🪵", description: "Dark oak with intricate carvings", tags: ["wood", "carved", "dark"], color: "hsl(var(--secondary))" },
@@ -77,8 +97,11 @@ export const textureLibrary: TextureItem[] = [
   { id: "stairs_spiral", name: "Spiral Staircase", category: "building", subcategory: "Stairs", emoji: "🔄", description: "Elegant spiral stone staircase", tags: ["stairs", "spiral", "stone"], color: "hsl(var(--muted))" },
   { id: "wall_cobblestone_mossy", name: "Mossy Cobblestone", category: "building", subcategory: "Wall", emoji: "🧱", description: "Old cobblestone covered in moss", tags: ["cobblestone", "mossy", "old"], color: "hsl(var(--creeper))" },
   { id: "floor_checker", name: "Checkered Floor", category: "building", subcategory: "Floor", emoji: "♟️", description: "Classic black and white checkered floor", tags: ["checker", "floor", "classic"], color: "hsl(var(--foreground))" },
+  { id: "arch_stone", name: "Stone Arch", category: "building", subcategory: "Arches", emoji: "🏛️", description: "Roman-style stone archway", tags: ["arch", "roman", "stone"], color: "hsl(var(--muted))" },
+  { id: "column_doric", name: "Doric Column", category: "building", subcategory: "Columns", emoji: "🏛️", description: "Classical Greek doric column", tags: ["column", "greek", "classical"], color: "hsl(var(--muted))" },
+  { id: "slate_roof", name: "Slate Roof Tiles", category: "building", subcategory: "Roof", emoji: "🏠", description: "Dark natural slate roofing tiles", tags: ["slate", "roof", "dark"], color: "hsl(var(--foreground))" },
 
-  // === ITEMS (12) ===
+  // === ITEMS (15) ===
   { id: "pickaxe_diamond_enchanted", name: "Enchanted Diamond Pick", category: "items", subcategory: "Tools", emoji: "⛏️", description: "Glowing enchanted diamond pickaxe", tags: ["pickaxe", "diamond", "enchanted"], color: "hsl(var(--diamond))" },
   { id: "compass_ancient", name: "Ancient Compass", category: "items", subcategory: "Navigation", emoji: "🧭", description: "Mystical compass pointing to treasure", tags: ["compass", "navigation", "treasure"], color: "hsl(var(--gold))" },
   { id: "map_treasure", name: "Treasure Map", category: "items", subcategory: "Navigation", emoji: "🗺️", description: "Weathered treasure map with X marks", tags: ["map", "treasure", "adventure"], color: "hsl(var(--secondary))" },
@@ -91,8 +114,11 @@ export const textureLibrary: TextureItem[] = [
   { id: "pearl_ender", name: "Ender Pearl", category: "items", subcategory: "Ender", emoji: "🟢", description: "Glowing ender pearl with swirls", tags: ["ender", "teleport", "pearl"], color: "hsl(var(--creeper))" },
   { id: "totem_undying", name: "Totem of Undying", category: "items", subcategory: "Magic", emoji: "🗿", description: "Mystical totem that cheats death", tags: ["totem", "undying", "rare"], color: "hsl(var(--gold))" },
   { id: "nether_star", name: "Nether Star", category: "items", subcategory: "Boss", emoji: "⭐", description: "Brilliant nether star from the Wither", tags: ["star", "wither", "boss"], color: "hsl(var(--gold))" },
+  { id: "spyglass_custom", name: "Ornate Spyglass", category: "items", subcategory: "Tools", emoji: "🔭", description: "Decorative brass spyglass telescope", tags: ["spyglass", "brass", "telescope"], color: "hsl(var(--gold))" },
+  { id: "music_disc_custom", name: "Custom Music Disc", category: "items", subcategory: "Music", emoji: "💿", description: "Custom rainbow music disc", tags: ["music", "disc", "rainbow"], color: "hsl(var(--primary))" },
+  { id: "brush_archaeology", name: "Archaeology Brush", category: "items", subcategory: "Tools", emoji: "🖌️", description: "Delicate archaeology discovery brush", tags: ["brush", "archaeology", "discovery"], color: "hsl(var(--secondary))" },
 
-  // === WEAPONS (10) ===
+  // === WEAPONS (15) ===
   { id: "sword_dragon", name: "Dragon Slayer", category: "weapons", subcategory: "Swords", emoji: "🗡️", description: "Legendary dragon-forged sword", tags: ["sword", "dragon", "legendary"], color: "hsl(var(--destructive))" },
   { id: "bow_flame", name: "Flame Bow", category: "weapons", subcategory: "Ranged", emoji: "🏹", description: "Enchanted bow with fire arrows", tags: ["bow", "flame", "ranged"], color: "hsl(var(--lava))" },
   { id: "trident_ocean", name: "Ocean Trident", category: "weapons", subcategory: "Trident", emoji: "🔱", description: "Powerful trident of the deep", tags: ["trident", "ocean", "powerful"], color: "hsl(var(--accent))" },
@@ -103,8 +129,13 @@ export const textureLibrary: TextureItem[] = [
   { id: "staff_ice", name: "Ice Staff", category: "weapons", subcategory: "Staves", emoji: "🧊", description: "Frost wizard's ice staff", tags: ["staff", "ice", "magic"], color: "hsl(var(--accent))" },
   { id: "hammer_titan", name: "Titan Hammer", category: "weapons", subcategory: "Hammers", emoji: "🔨", description: "Ground-shaking titan warhammer", tags: ["hammer", "titan", "heavy"], color: "hsl(var(--secondary))" },
   { id: "scythe_reaper", name: "Reaper's Scythe", category: "weapons", subcategory: "Scythes", emoji: "💀", description: "Dark reaper's harvest scythe", tags: ["scythe", "dark", "reaper"], color: "hsl(var(--foreground))" },
+  { id: "katana_cherry", name: "Cherry Katana", category: "weapons", subcategory: "Swords", emoji: "🌸", description: "Elegant katana with cherry blossom guard", tags: ["katana", "cherry", "elegant"], color: "hsl(var(--accent))" },
+  { id: "spear_lightning", name: "Lightning Spear", category: "weapons", subcategory: "Spears", emoji: "⚡", description: "Electrified throwing spear", tags: ["spear", "lightning", "thrown"], color: "hsl(var(--gold))" },
+  { id: "whip_flame", name: "Flame Whip", category: "weapons", subcategory: "Whips", emoji: "🔥", description: "Blazing fire whip weapon", tags: ["whip", "flame", "fire"], color: "hsl(var(--lava))" },
+  { id: "shuriken_ice", name: "Ice Shuriken", category: "weapons", subcategory: "Thrown", emoji: "❄️", description: "Frozen throwing star projectile", tags: ["shuriken", "ice", "thrown"], color: "hsl(var(--accent))" },
+  { id: "sword_void", name: "Void Blade", category: "weapons", subcategory: "Swords", emoji: "🌀", description: "End-dimension void-infused blade", tags: ["void", "end", "sword"], color: "hsl(var(--enderman))" },
 
-  // === ARMOR (10) ===
+  // === ARMOR (15) ===
   { id: "helmet_knight", name: "Knight Helmet", category: "armor", subcategory: "Helmets", emoji: "⛑️", description: "Full plate knight's helmet", tags: ["helmet", "knight", "plate"], color: "hsl(var(--muted))" },
   { id: "chestplate_dragon", name: "Dragon Chestplate", category: "armor", subcategory: "Chest", emoji: "🛡️", description: "Dragonscale chestplate armor", tags: ["chest", "dragon", "scales"], color: "hsl(var(--destructive))" },
   { id: "leggings_mithril", name: "Mithril Leggings", category: "armor", subcategory: "Legs", emoji: "🦿", description: "Lightweight mithril leg armor", tags: ["leggings", "mithril", "light"], color: "hsl(var(--accent))" },
@@ -115,8 +146,30 @@ export const textureLibrary: TextureItem[] = [
   { id: "armor_samurai", name: "Samurai Armor", category: "armor", subcategory: "Sets", emoji: "⚔️", description: "Full traditional samurai armor set", tags: ["samurai", "japan", "warrior"], color: "hsl(var(--destructive))" },
   { id: "gauntlets_power", name: "Power Gauntlets", category: "armor", subcategory: "Gloves", emoji: "🥊", description: "Strength-enhancing power gauntlets", tags: ["gauntlets", "power", "strength"], color: "hsl(var(--lava))" },
   { id: "armor_stealth", name: "Stealth Suit", category: "armor", subcategory: "Sets", emoji: "🥷", description: "Near-invisible stealth armor", tags: ["stealth", "invisible", "ninja"], color: "hsl(var(--foreground))" },
+  { id: "helmet_viking", name: "Viking Helmet", category: "armor", subcategory: "Helmets", emoji: "⛑️", description: "Horned viking warrior helmet", tags: ["viking", "horned", "warrior"], color: "hsl(var(--secondary))" },
+  { id: "armor_crystal", name: "Crystal Armor Set", category: "armor", subcategory: "Sets", emoji: "💎", description: "Transparent crystal full armor set", tags: ["crystal", "transparent", "full"], color: "hsl(var(--diamond))" },
+  { id: "boots_lava_walker", name: "Lava Walker Boots", category: "armor", subcategory: "Boots", emoji: "🌋", description: "Walk on lava without burning", tags: ["lava", "walker", "fire"], color: "hsl(var(--lava))" },
+  { id: "helmet_astronaut", name: "Astronaut Helmet", category: "armor", subcategory: "Helmets", emoji: "🧑‍🚀", description: "Space helmet with oxygen visor", tags: ["astronaut", "space", "visor"], color: "hsl(var(--muted))" },
+  { id: "shield_ender", name: "Ender Shield", category: "armor", subcategory: "Shields", emoji: "🌀", description: "Teleporting ender-infused shield", tags: ["ender", "teleport", "shield"], color: "hsl(var(--enderman))" },
 
-  // === FOOD (10) ===
+  // === TOOLS (15) ===
+  { id: "pickaxe_netherite_glow", name: "Glowing Netherite Pick", category: "tools", subcategory: "Pickaxes", emoji: "⛏️", description: "Netherite pickaxe with glow enchantment", tags: ["netherite", "glow", "pickaxe"], color: "hsl(var(--gold))" },
+  { id: "axe_lumberjack", name: "Lumberjack Axe", category: "tools", subcategory: "Axes", emoji: "🪓", description: "Heavy-duty tree-felling axe", tags: ["axe", "lumberjack", "wood"], color: "hsl(var(--secondary))" },
+  { id: "shovel_golden", name: "Golden Shovel", category: "tools", subcategory: "Shovels", emoji: "🪏", description: "Ornate golden digging shovel", tags: ["shovel", "golden", "dig"], color: "hsl(var(--gold))" },
+  { id: "hoe_farming", name: "Master Farmer Hoe", category: "tools", subcategory: "Hoes", emoji: "🌾", description: "Auto-planting magical hoe", tags: ["hoe", "farming", "magic"], color: "hsl(var(--creeper))" },
+  { id: "fishing_rod_lucky", name: "Lucky Fishing Rod", category: "tools", subcategory: "Fishing", emoji: "🎣", description: "Always catches rare fish", tags: ["fishing", "lucky", "rare"], color: "hsl(var(--accent))" },
+  { id: "shears_diamond", name: "Diamond Shears", category: "tools", subcategory: "Shears", emoji: "✂️", description: "Ultra-sharp diamond shearing tool", tags: ["shears", "diamond", "sharp"], color: "hsl(var(--diamond))" },
+  { id: "wrench_redstone", name: "Redstone Wrench", category: "tools", subcategory: "Redstone", emoji: "🔧", description: "Adjusts redstone components on click", tags: ["wrench", "redstone", "adjust"], color: "hsl(var(--destructive))" },
+  { id: "hammer_builder", name: "Builder's Hammer", category: "tools", subcategory: "Building", emoji: "🔨", description: "Places blocks in patterns", tags: ["hammer", "building", "pattern"], color: "hsl(var(--secondary))" },
+  { id: "chisel_stone", name: "Stone Chisel", category: "tools", subcategory: "Carving", emoji: "🪨", description: "Carves detailed patterns in stone", tags: ["chisel", "stone", "carve"], color: "hsl(var(--muted))" },
+  { id: "watering_can", name: "Watering Can", category: "tools", subcategory: "Farming", emoji: "🚿", description: "Grows crops instantly when watered", tags: ["water", "grow", "farm"], color: "hsl(var(--accent))" },
+  { id: "paintbrush", name: "Paintbrush", category: "tools", subcategory: "Creative", emoji: "🖌️", description: "Colors blocks any shade you want", tags: ["paint", "color", "creative"], color: "hsl(var(--primary))" },
+  { id: "grappling_hook", name: "Grappling Hook", category: "tools", subcategory: "Movement", emoji: "🪝", description: "Swing between structures like a hero", tags: ["grapple", "hook", "swing"], color: "hsl(var(--foreground))" },
+  { id: "magnifying_glass", name: "Magnifying Glass", category: "tools", subcategory: "Discovery", emoji: "🔍", description: "Reveals hidden ores and treasures", tags: ["magnify", "discover", "ore"], color: "hsl(var(--gold))" },
+  { id: "net_butterfly", name: "Butterfly Net", category: "tools", subcategory: "Catching", emoji: "🦋", description: "Catches butterflies and fireflies", tags: ["net", "butterfly", "catch"], color: "hsl(var(--creeper))" },
+  { id: "drill_mining", name: "Mining Drill", category: "tools", subcategory: "Pickaxes", emoji: "🔩", description: "Mechanical 3x3 mining drill", tags: ["drill", "mining", "mechanical"], color: "hsl(var(--secondary))" },
+
+  // === FOOD (15) ===
   { id: "cake_rainbow", name: "Rainbow Cake", category: "food", subcategory: "Baked", emoji: "🎂", description: "Multi-layered rainbow celebration cake", tags: ["cake", "rainbow", "party"], color: "hsl(var(--primary))" },
   { id: "apple_golden_enchanted", name: "Enchanted Golden Apple", category: "food", subcategory: "Fruit", emoji: "🍎", description: "Ultra-rare enchanted golden apple", tags: ["apple", "golden", "enchanted"], color: "hsl(var(--gold))" },
   { id: "steak_perfect", name: "Perfect Steak", category: "food", subcategory: "Meat", emoji: "🥩", description: "Perfectly cooked juicy steak", tags: ["steak", "meat", "cooked"], color: "hsl(var(--secondary))" },
@@ -127,8 +180,13 @@ export const textureLibrary: TextureItem[] = [
   { id: "bread_artisan", name: "Artisan Bread", category: "food", subcategory: "Baked", emoji: "🍞", description: "Crusty artisan wheat bread", tags: ["bread", "baked", "wheat"], color: "hsl(var(--secondary))" },
   { id: "candy_lollipop", name: "Lollipop", category: "food", subcategory: "Sweets", emoji: "🍭", description: "Swirly rainbow lollipop candy", tags: ["candy", "sweet", "rainbow"], color: "hsl(var(--primary))" },
   { id: "sushi_roll", name: "Sushi Roll", category: "food", subcategory: "Exotic", emoji: "🍣", description: "Fresh salmon sushi roll", tags: ["sushi", "fish", "exotic"], color: "hsl(var(--lava))" },
+  { id: "pizza_slice", name: "Pizza Slice", category: "food", subcategory: "Meals", emoji: "🍕", description: "Cheesy pepperoni pizza slice", tags: ["pizza", "cheese", "meal"], color: "hsl(var(--lava))" },
+  { id: "ice_cream_sundae", name: "Ice Cream Sundae", category: "food", subcategory: "Sweets", emoji: "🍨", description: "Triple scoop sundae with cherry", tags: ["icecream", "sundae", "sweet"], color: "hsl(var(--accent))" },
+  { id: "burrito_enchanted", name: "Enchanted Burrito", category: "food", subcategory: "Meals", emoji: "🌯", description: "Magical burrito that gives buffs", tags: ["burrito", "magic", "buff"], color: "hsl(var(--gold))" },
+  { id: "donut_sprinkle", name: "Sprinkle Donut", category: "food", subcategory: "Sweets", emoji: "🍩", description: "Frosted donut with rainbow sprinkles", tags: ["donut", "sprinkle", "sweet"], color: "hsl(var(--primary))" },
+  { id: "fruit_dragon", name: "Dragon Fruit", category: "food", subcategory: "Fruit", emoji: "🐉", description: "Exotic dragon fruit with healing power", tags: ["dragon", "fruit", "healing"], color: "hsl(var(--accent))" },
 
-  // === MOBS (15) ===
+  // === MOBS (20) ===
   { id: "mob_dragon_baby", name: "Baby Dragon", category: "mobs", subcategory: "Dragons", emoji: "🐉", description: "Adorable baby ender dragon pet", tags: ["dragon", "baby", "pet"], color: "hsl(var(--enderman))" },
   { id: "mob_wolf_dire", name: "Dire Wolf", category: "mobs", subcategory: "Wolves", emoji: "🐺", description: "Large fierce dire wolf mount", tags: ["wolf", "dire", "mount"], color: "hsl(var(--muted))" },
   { id: "mob_cat_neon", name: "Neon Cat", category: "mobs", subcategory: "Cats", emoji: "🐱", description: "Glow-in-the-dark neon cat", tags: ["cat", "neon", "glow"], color: "hsl(var(--accent))" },
@@ -144,8 +202,13 @@ export const textureLibrary: TextureItem[] = [
   { id: "mob_kraken", name: "Kraken", category: "mobs", subcategory: "Ocean", emoji: "🦑", description: "Massive ocean kraken boss", tags: ["kraken", "ocean", "boss"], color: "hsl(var(--accent))" },
   { id: "mob_griffin", name: "Griffin", category: "mobs", subcategory: "Mythical", emoji: "🦅", description: "Majestic flying griffin mount", tags: ["griffin", "flying", "mount"], color: "hsl(var(--gold))" },
   { id: "mob_panda_red", name: "Red Panda", category: "mobs", subcategory: "Wildlife", emoji: "🐼", description: "Cute red panda pet companion", tags: ["panda", "red", "cute"], color: "hsl(var(--lava))" },
+  { id: "mob_hydra", name: "Hydra", category: "mobs", subcategory: "Bosses", emoji: "🐍", description: "Multi-headed hydra boss monster", tags: ["hydra", "boss", "heads"], color: "hsl(var(--creeper))" },
+  { id: "mob_owl_wise", name: "Wise Owl", category: "mobs", subcategory: "Birds", emoji: "🦉", description: "Wise owl companion that finds loot", tags: ["owl", "wise", "loot"], color: "hsl(var(--secondary))" },
+  { id: "mob_turtle_elder", name: "Elder Turtle", category: "mobs", subcategory: "Ocean", emoji: "🐢", description: "Ancient wise elder sea turtle", tags: ["turtle", "elder", "ocean"], color: "hsl(var(--creeper))" },
+  { id: "mob_wisp_fire", name: "Fire Wisp", category: "mobs", subcategory: "Spirits", emoji: "🔥", description: "Floating fire spirit companion", tags: ["wisp", "fire", "spirit"], color: "hsl(var(--lava))" },
+  { id: "mob_goat_mountain", name: "Mountain Goat", category: "mobs", subcategory: "Wildlife", emoji: "🐐", description: "Headbutting mountain climbing goat", tags: ["goat", "mountain", "climb"], color: "hsl(var(--muted))" },
 
-  // === DECORATION (10) ===
+  // === DECORATION (15) ===
   { id: "banner_dragon", name: "Dragon Banner", category: "decoration", subcategory: "Banners", emoji: "🏴", description: "Fearsome dragon sigil banner", tags: ["banner", "dragon", "medieval"], color: "hsl(var(--destructive))" },
   { id: "painting_landscape", name: "Landscape Painting", category: "decoration", subcategory: "Art", emoji: "🖼️", description: "Beautiful mountain landscape painting", tags: ["painting", "landscape", "art"], color: "hsl(var(--creeper))" },
   { id: "chandelier_crystal", name: "Crystal Chandelier", category: "decoration", subcategory: "Lighting", emoji: "💡", description: "Sparkling crystal chandelier", tags: ["chandelier", "crystal", "fancy"], color: "hsl(var(--gold))" },
@@ -156,8 +219,13 @@ export const textureLibrary: TextureItem[] = [
   { id: "trophy_gold", name: "Gold Trophy", category: "decoration", subcategory: "Awards", emoji: "🏆", description: "First place gold trophy", tags: ["trophy", "gold", "winner"], color: "hsl(var(--gold))" },
   { id: "pot_plant", name: "Potted Plant", category: "decoration", subcategory: "Plants", emoji: "🪴", description: "Decorative potted house plant", tags: ["plant", "pot", "indoor"], color: "hsl(var(--creeper))" },
   { id: "clock_grandfather", name: "Grandfather Clock", category: "decoration", subcategory: "Furniture", emoji: "🕰️", description: "Tall ornate grandfather clock", tags: ["clock", "antique", "time"], color: "hsl(var(--secondary))" },
+  { id: "aquarium_fish", name: "Fish Aquarium", category: "decoration", subcategory: "Furniture", emoji: "🐠", description: "Glass aquarium with tropical fish", tags: ["aquarium", "fish", "tropical"], color: "hsl(var(--accent))" },
+  { id: "bookcase_fancy", name: "Fancy Bookcase", category: "decoration", subcategory: "Furniture", emoji: "📚", description: "Tall mahogany bookcase with gold trim", tags: ["bookcase", "fancy", "mahogany"], color: "hsl(var(--secondary))" },
+  { id: "mirror_magic", name: "Magic Mirror", category: "decoration", subcategory: "Furniture", emoji: "🪞", description: "Enchanted mirror that shows dimensions", tags: ["mirror", "magic", "portal"], color: "hsl(var(--enderman))" },
+  { id: "globe_world", name: "World Globe", category: "decoration", subcategory: "Furniture", emoji: "🌍", description: "Spinning Minecraft world globe", tags: ["globe", "world", "spinning"], color: "hsl(var(--accent))" },
+  { id: "flag_kingdom", name: "Kingdom Flag", category: "decoration", subcategory: "Banners", emoji: "🚩", description: "Custom kingdom territorial flag", tags: ["flag", "kingdom", "territory"], color: "hsl(var(--destructive))" },
 
-  // === REDSTONE (8) ===
+  // === REDSTONE (12) ===
   { id: "piston_golden", name: "Golden Piston", category: "redstone", subcategory: "Mechanical", emoji: "⚙️", description: "Enhanced golden piston mechanism", tags: ["piston", "golden", "mechanical"], color: "hsl(var(--gold))" },
   { id: "repeater_neon", name: "Neon Repeater", category: "redstone", subcategory: "Signal", emoji: "🔴", description: "Glowing neon redstone repeater", tags: ["repeater", "neon", "signal"], color: "hsl(var(--destructive))" },
   { id: "lamp_rainbow", name: "Rainbow Lamp", category: "redstone", subcategory: "Lighting", emoji: "💡", description: "Color-changing rainbow redstone lamp", tags: ["lamp", "rainbow", "color"], color: "hsl(var(--primary))" },
@@ -166,4 +234,70 @@ export const textureLibrary: TextureItem[] = [
   { id: "observer_eye", name: "Eye Observer", category: "redstone", subcategory: "Detection", emoji: "👁️", description: "Creepy eye-themed observer block", tags: ["observer", "eye", "detection"], color: "hsl(var(--destructive))" },
   { id: "rail_speed", name: "Speed Rail", category: "redstone", subcategory: "Rails", emoji: "🛤️", description: "Ultra-fast golden speed rail", tags: ["rail", "speed", "gold"], color: "hsl(var(--gold))" },
   { id: "button_emerald", name: "Emerald Button", category: "redstone", subcategory: "Input", emoji: "🟢", description: "Fancy emerald redstone button", tags: ["button", "emerald", "input"], color: "hsl(var(--creeper))" },
+  { id: "comparator_smart", name: "Smart Comparator", category: "redstone", subcategory: "Logic", emoji: "🧠", description: "AI-powered redstone comparator", tags: ["comparator", "smart", "logic"], color: "hsl(var(--destructive))" },
+  { id: "wire_blue", name: "Blue Redstone Wire", category: "redstone", subcategory: "Wire", emoji: "🔵", description: "Blue-tinted alternate redstone wire", tags: ["wire", "blue", "redstone"], color: "hsl(var(--accent))" },
+  { id: "trap_door_iron", name: "Iron Trap Door", category: "redstone", subcategory: "Doors", emoji: "🚪", description: "Reinforced iron trap door mechanism", tags: ["trapdoor", "iron", "trap"], color: "hsl(var(--muted))" },
+  { id: "pressure_plate_gold", name: "Gold Pressure Plate", category: "redstone", subcategory: "Input", emoji: "🟡", description: "Golden weighted pressure plate", tags: ["pressure", "gold", "weighted"], color: "hsl(var(--gold))" },
+
+  // === NETHER (15) ===
+  { id: "netherrack_burning", name: "Burning Netherrack", category: "nether", subcategory: "Terrain", emoji: "🔥", description: "Eternally burning netherrack surface", tags: ["netherrack", "fire", "eternal"], color: "hsl(var(--lava))" },
+  { id: "soul_sand_face", name: "Soul Sand Faces", category: "nether", subcategory: "Terrain", emoji: "😱", description: "Screaming faces in soul sand", tags: ["soul", "sand", "faces"], color: "hsl(var(--secondary))" },
+  { id: "crimson_stem", name: "Crimson Stem", category: "nether", subcategory: "Wood", emoji: "🍄", description: "Deep red crimson fungus stem", tags: ["crimson", "fungus", "red"], color: "hsl(var(--destructive))" },
+  { id: "warped_stem", name: "Warped Stem", category: "nether", subcategory: "Wood", emoji: "🍄", description: "Teal warped fungus stem", tags: ["warped", "fungus", "teal"], color: "hsl(var(--accent))" },
+  { id: "blackstone_gilded", name: "Gilded Blackstone", category: "nether", subcategory: "Stone", emoji: "✨", description: "Gold-veined blackstone block", tags: ["blackstone", "gilded", "gold"], color: "hsl(var(--gold))" },
+  { id: "shroomlight_bright", name: "Bright Shroomlight", category: "nether", subcategory: "Light", emoji: "💡", description: "Ultra-bright shroomlight glowing block", tags: ["shroomlight", "bright", "light"], color: "hsl(var(--gold))" },
+  { id: "nether_wart_growing", name: "Growing Nether Wart", category: "nether", subcategory: "Plants", emoji: "🌿", description: "Nether wart at all growth stages", tags: ["wart", "nether", "growing"], color: "hsl(var(--destructive))" },
+  { id: "magma_cube_face", name: "Magma Cube Face", category: "nether", subcategory: "Mobs", emoji: "🟠", description: "Bouncy magma cube mob texture", tags: ["magma", "cube", "bounce"], color: "hsl(var(--lava))" },
+  { id: "blaze_rod_glowing", name: "Glowing Blaze Rod", category: "nether", subcategory: "Items", emoji: "🪄", description: "Intensely glowing blaze rod", tags: ["blaze", "rod", "glowing"], color: "hsl(var(--gold))" },
+  { id: "ghast_tear_drop", name: "Ghast Tear", category: "nether", subcategory: "Items", emoji: "💧", description: "Shimmering ghast tear droplet", tags: ["ghast", "tear", "drop"], color: "hsl(var(--muted))" },
+  { id: "wither_rose", name: "Wither Rose", category: "nether", subcategory: "Plants", emoji: "🥀", description: "Dark wither rose with death aura", tags: ["wither", "rose", "dark"], color: "hsl(var(--foreground))" },
+  { id: "ancient_debris", name: "Ancient Debris", category: "nether", subcategory: "Ore", emoji: "🪨", description: "Rare ancient debris netherite ore", tags: ["debris", "ancient", "netherite"], color: "hsl(var(--secondary))" },
+  { id: "nether_gold_ore", name: "Nether Gold Ore", category: "nether", subcategory: "Ore", emoji: "🥇", description: "Gold ore found in the nether", tags: ["gold", "ore", "nether"], color: "hsl(var(--gold))" },
+  { id: "chain_nether", name: "Nether Chain", category: "nether", subcategory: "Decor", emoji: "⛓️", description: "Dark iron chain for nether builds", tags: ["chain", "iron", "hanging"], color: "hsl(var(--foreground))" },
+  { id: "respawn_anchor", name: "Respawn Anchor", category: "nether", subcategory: "Utility", emoji: "⚓", description: "Glowstone-powered nether respawn point", tags: ["respawn", "anchor", "nether"], color: "hsl(var(--enderman))" },
+
+  // === END (12) ===
+  { id: "end_portal_frame", name: "End Portal Frame", category: "end", subcategory: "Structures", emoji: "🌀", description: "Eye of ender portal frame block", tags: ["portal", "ender", "frame"], color: "hsl(var(--enderman))" },
+  { id: "chorus_flower", name: "Chorus Flower", category: "end", subcategory: "Plants", emoji: "🌸", description: "Growing chorus flower plant", tags: ["chorus", "flower", "end"], color: "hsl(var(--enderman))" },
+  { id: "purpur_block", name: "Purpur Block", category: "end", subcategory: "Building", emoji: "🟪", description: "Purple purpur end city block", tags: ["purpur", "end", "purple"], color: "hsl(var(--enderman))" },
+  { id: "dragon_egg", name: "Dragon Egg", category: "end", subcategory: "Rare", emoji: "🥚", description: "The rarest block — dragon egg", tags: ["dragon", "egg", "rare"], color: "hsl(var(--foreground))" },
+  { id: "shulker_box_rainbow", name: "Rainbow Shulker Box", category: "end", subcategory: "Storage", emoji: "📦", description: "Color-shifting shulker storage box", tags: ["shulker", "rainbow", "storage"], color: "hsl(var(--primary))" },
+  { id: "end_rod_glowing", name: "Glowing End Rod", category: "end", subcategory: "Light", emoji: "🕯️", description: "Bright luminous end rod light", tags: ["rod", "end", "light"], color: "hsl(var(--gold))" },
+  { id: "enderman_eye", name: "Enderman Eye", category: "end", subcategory: "Mobs", emoji: "👁️", description: "Glowing purple enderman eye texture", tags: ["enderman", "eye", "purple"], color: "hsl(var(--enderman))" },
+  { id: "end_crystal", name: "End Crystal", category: "end", subcategory: "Structures", emoji: "💎", description: "Exploding ender crystal on pillar", tags: ["crystal", "end", "explode"], color: "hsl(var(--accent))" },
+  { id: "void_block", name: "Void Block", category: "end", subcategory: "Special", emoji: "⬛", description: "Pure void darkness block", tags: ["void", "dark", "empty"], color: "hsl(var(--foreground))" },
+  { id: "elytra_custom", name: "Custom Elytra", category: "end", subcategory: "Items", emoji: "🪽", description: "Custom-designed elytra wings", tags: ["elytra", "wings", "fly"], color: "hsl(var(--enderman))" },
+  { id: "end_gateway", name: "End Gateway", category: "end", subcategory: "Structures", emoji: "🌌", description: "Swirling end gateway portal", tags: ["gateway", "portal", "swirl"], color: "hsl(var(--enderman))" },
+  { id: "sculk_sensor_end", name: "Sculk Sensor", category: "end", subcategory: "Redstone", emoji: "📡", description: "Vibration-detecting sculk sensor", tags: ["sculk", "sensor", "vibration"], color: "hsl(var(--accent))" },
+
+  // === OCEAN (12) ===
+  { id: "sea_lantern_bright", name: "Sea Lantern", category: "ocean", subcategory: "Light", emoji: "💡", description: "Glowing sea lantern light block", tags: ["lantern", "sea", "light"], color: "hsl(var(--accent))" },
+  { id: "conduit_power", name: "Conduit", category: "ocean", subcategory: "Special", emoji: "🌊", description: "Underwater power conduit block", tags: ["conduit", "power", "underwater"], color: "hsl(var(--accent))" },
+  { id: "coral_tube_blue", name: "Blue Tube Coral", category: "ocean", subcategory: "Coral", emoji: "🪸", description: "Vibrant blue tube coral", tags: ["coral", "blue", "tube"], color: "hsl(var(--accent))" },
+  { id: "coral_fire_red", name: "Fire Coral", category: "ocean", subcategory: "Coral", emoji: "🪸", description: "Bright red fire coral block", tags: ["coral", "fire", "red"], color: "hsl(var(--destructive))" },
+  { id: "sponge_wet", name: "Wet Sponge", category: "ocean", subcategory: "Utility", emoji: "🧽", description: "Water-absorbing wet sponge block", tags: ["sponge", "wet", "absorb"], color: "hsl(var(--gold))" },
+  { id: "turtle_egg", name: "Turtle Eggs", category: "ocean", subcategory: "Nature", emoji: "🥚", description: "Nesting sea turtle eggs on sand", tags: ["turtle", "eggs", "beach"], color: "hsl(var(--muted))" },
+  { id: "dolphin_skin", name: "Dolphin Skin", category: "ocean", subcategory: "Mobs", emoji: "🐬", description: "Friendly ocean dolphin texture", tags: ["dolphin", "friendly", "swim"], color: "hsl(var(--accent))" },
+  { id: "trident_prismarine", name: "Prismarine Trident", category: "ocean", subcategory: "Weapons", emoji: "🔱", description: "Prismarine-forged ocean trident", tags: ["trident", "prismarine", "ocean"], color: "hsl(var(--accent))" },
+  { id: "nautilus_shell", name: "Nautilus Shell", category: "ocean", subcategory: "Items", emoji: "🐚", description: "Rare spiral nautilus shell", tags: ["nautilus", "shell", "rare"], color: "hsl(var(--secondary))" },
+  { id: "seagrass_tall", name: "Tall Seagrass", category: "ocean", subcategory: "Plants", emoji: "🌿", description: "Swaying tall underwater seagrass", tags: ["seagrass", "underwater", "plant"], color: "hsl(var(--creeper))" },
+  { id: "guardian_elder", name: "Elder Guardian", category: "ocean", subcategory: "Mobs", emoji: "🐡", description: "Elder guardian monument boss", tags: ["guardian", "elder", "boss"], color: "hsl(var(--accent))" },
+  { id: "treasure_chest_ocean", name: "Ocean Treasure", category: "ocean", subcategory: "Loot", emoji: "🏴‍☠️", description: "Buried ocean treasure chest", tags: ["treasure", "chest", "buried"], color: "hsl(var(--gold))" },
+
+  // === MAGIC (15) ===
+  { id: "enchanting_table", name: "Enchanting Table", category: "magic", subcategory: "Stations", emoji: "📖", description: "Mystical enchanting table texture", tags: ["enchanting", "table", "magic"], color: "hsl(var(--enderman))" },
+  { id: "brewing_stand_glow", name: "Glowing Brew Stand", category: "magic", subcategory: "Stations", emoji: "⚗️", description: "Bubbling glowing brewing stand", tags: ["brewing", "potion", "glow"], color: "hsl(var(--accent))" },
+  { id: "rune_fire", name: "Fire Rune", category: "magic", subcategory: "Runes", emoji: "🔥", description: "Ancient fire elemental rune", tags: ["rune", "fire", "ancient"], color: "hsl(var(--lava))" },
+  { id: "rune_water", name: "Water Rune", category: "magic", subcategory: "Runes", emoji: "💧", description: "Ancient water elemental rune", tags: ["rune", "water", "ancient"], color: "hsl(var(--accent))" },
+  { id: "rune_earth", name: "Earth Rune", category: "magic", subcategory: "Runes", emoji: "🌍", description: "Ancient earth elemental rune", tags: ["rune", "earth", "ancient"], color: "hsl(var(--creeper))" },
+  { id: "rune_air", name: "Air Rune", category: "magic", subcategory: "Runes", emoji: "💨", description: "Ancient air elemental rune", tags: ["rune", "air", "ancient"], color: "hsl(var(--muted))" },
+  { id: "spell_circle", name: "Spell Circle", category: "magic", subcategory: "Effects", emoji: "⭕", description: "Glowing magic spell summoning circle", tags: ["spell", "circle", "summon"], color: "hsl(var(--enderman))" },
+  { id: "wand_elder", name: "Elder Wand", category: "magic", subcategory: "Wands", emoji: "🪄", description: "Powerful elder magic wand", tags: ["wand", "elder", "powerful"], color: "hsl(var(--gold))" },
+  { id: "scroll_ancient", name: "Ancient Scroll", category: "magic", subcategory: "Scrolls", emoji: "📜", description: "Mysterious ancient magic scroll", tags: ["scroll", "ancient", "mystery"], color: "hsl(var(--secondary))" },
+  { id: "amulet_protection", name: "Protection Amulet", category: "magic", subcategory: "Jewelry", emoji: "🔮", description: "Shield-granting protection amulet", tags: ["amulet", "protection", "shield"], color: "hsl(var(--enderman))" },
+  { id: "ring_invisibility", name: "Ring of Invisibility", category: "magic", subcategory: "Jewelry", emoji: "💍", description: "Vanishing invisibility ring", tags: ["ring", "invisibility", "vanish"], color: "hsl(var(--muted))" },
+  { id: "orb_experience", name: "Experience Orb", category: "magic", subcategory: "Orbs", emoji: "🟢", description: "Floating green experience orb", tags: ["orb", "experience", "green"], color: "hsl(var(--creeper))" },
+  { id: "portal_custom", name: "Custom Portal", category: "magic", subcategory: "Portals", emoji: "🌀", description: "Custom dimension portal block", tags: ["portal", "custom", "dimension"], color: "hsl(var(--primary))" },
+  { id: "beacon_beam", name: "Beacon Beam", category: "magic", subcategory: "Light", emoji: "🔦", description: "Colorful beacon light beam effect", tags: ["beacon", "beam", "light"], color: "hsl(var(--primary))" },
+  { id: "enchantment_glow", name: "Enchantment Glow", category: "magic", subcategory: "Effects", emoji: "✨", description: "Purple enchantment shimmer overlay", tags: ["enchant", "glow", "shimmer"], color: "hsl(var(--enderman))" },
 ];
